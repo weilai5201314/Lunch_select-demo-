@@ -48,7 +48,7 @@ namespace Lunch_Select
         //  设置点击选菜按钮之后的跳转函数
         private void ButtonMain_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Hello world.恭喜完成选菜按钮事件");
+            MessageBox.Show("Hello world.恭喜进入选菜按钮事件");
         }
     }
 }
