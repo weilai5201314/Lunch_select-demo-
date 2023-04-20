@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+//引用数据库
+using MySql.Data.MySqlClient;
 
 namespace Lunch_Select
 {
@@ -29,7 +31,7 @@ namespace Lunch_Select
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // 获取窗口的宽度和高度
-            Button btn = MyCanvas.Children[0] as Button;//似乎有小小的问题，但是无法解决
+            Button btn = MyCanvas.Children[0] as Button; //似乎有小小的问题，但是无法解决
             if (btn != null)
             {
                 double width = MyCanvas.ActualWidth;

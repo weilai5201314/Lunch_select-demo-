@@ -19,3 +19,12 @@ D:\ide_tool\cpp\Lunch_Select\obj\Debug\net7.0-windows\refint\Lunch_Select.dll
 D:\ide_tool\cpp\Lunch_Select\obj\Debug\net7.0-windows\Lunch_Select.pdb
 D:\ide_tool\cpp\Lunch_Select\obj\Debug\net7.0-windows\Lunch_Select.genruntimeconfig.cache
 D:\ide_tool\cpp\Lunch_Select\obj\Debug\net7.0-windows\ref\Lunch_Select.dll
+D:\ide_tool\cpp\Lunch_Select\bin\Debug\net7.0-windows\MySql.Data.dll
+D:\ide_tool\cpp\Lunch_Select\bin\Debug\net7.0-windows\Google.Protobuf.dll
+D:\ide_tool\cpp\Lunch_Select\bin\Debug\net7.0-windows\ZstdNet.dll
+D:\ide_tool\cpp\Lunch_Select\bin\Debug\net7.0-windows\K4os.Compression.LZ4.Streams.dll
+D:\ide_tool\cpp\Lunch_Select\bin\Debug\net7.0-windows\BouncyCastle.Crypto.dll
+D:\ide_tool\cpp\Lunch_Select\bin\Debug\net7.0-windows\K4os.Compression.LZ4.dll
+D:\ide_tool\cpp\Lunch_Select\bin\Debug\net7.0-windows\K4os.Hash.xxHash.dll
+D:\ide_tool\cpp\Lunch_Select\bin\Debug\net7.0-windows\MySql.Data.xml
+D:\ide_tool\cpp\Lunch_Select\obj\Debug\net7.0-windows\Lunch_Select.csproj.CopyComplete
