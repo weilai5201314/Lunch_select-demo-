@@ -29,13 +29,24 @@ namespace Lunch_Select
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // 获取窗口的宽度和高度
-            double width = MyCanvas.ActualWidth;
-            double height = MyCanvas.ActualHeight;
+            Button btn = MyCanvas.Children[0] as Button;//似乎有小小的问题，但是无法解决
+            if (btn != null)
+            {
+                double width = MyCanvas.ActualWidth;
+                double height = MyCanvas.ActualHeight;
+                Canvas.SetLeft(btn, (width - btn.ActualWidth) / 2);
+                Canvas.SetTop(btn, (height - btn.ActualHeight) / 2);
+            }
+            else
+            {
+                // 处理Children[0]为空的情况
+            }
+        }
 
-            // 设置按钮的Canvas.Left和Canvas.Top属性，使其居中显示
-            Button btn = MyCanvas.Children[0] as Button;
-            Canvas.SetLeft(btn, (width - btn.ActualWidth) / 2);
-            Canvas.SetTop(btn, (height - btn.ActualHeight) / 2);
+        //  设置点击选菜按钮之后的跳转函数
+        private void ButtonMain_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Hello world.恭喜完成选菜按钮事件");
         }
     }
 }
