@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:Lunch_Select"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         <!-- 为帮里超级打本大 -->
+        
     </Application.Resources>
 </Application>
