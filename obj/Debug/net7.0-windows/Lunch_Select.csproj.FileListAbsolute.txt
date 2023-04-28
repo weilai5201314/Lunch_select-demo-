@@ -7,7 +7,6 @@ D:\ide_tool\cpp\Lunch_Select\obj\Debug\net7.0-windows\Lunch_Select.csproj.Assemb
 D:\ide_tool\cpp\Lunch_Select\obj\Debug\net7.0-windows\MainWindow.g.cs
 D:\ide_tool\cpp\Lunch_Select\obj\Debug\net7.0-windows\App.g.cs
 D:\ide_tool\cpp\Lunch_Select\obj\Debug\net7.0-windows\Lunch_Select_MarkupCompile.cache
-D:\ide_tool\cpp\Lunch_Select\obj\Debug\net7.0-windows\Lunch_Select_MarkupCompile.lref
 D:\ide_tool\cpp\Lunch_Select\obj\Debug\net7.0-windows\MainWindow.baml
 D:\ide_tool\cpp\Lunch_Select\obj\Debug\net7.0-windows\Lunch_Select.g.resources
 D:\ide_tool\cpp\Lunch_Select\obj\Debug\net7.0-windows\Lunch_Select.GeneratedMSBuildEditorConfig.editorconfig
