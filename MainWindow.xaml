@@ -40,7 +40,9 @@
         <Canvas Name="MyCanvas" Width="500" Height="450">
             <!-- <TextBlock Text="这是默认说明文本" HorizontalAlignment="Center" FontSize="16" VerticalAlignment="Top" Margin="10" /> -->
             <!-- tittle -->
-            <TextBlock Text="食之味" HorizontalAlignment="Center" Canvas.Left="225" Canvas.Top="130"/>
+            <TextBlock Text="食之味" FontSize="30" Foreground="#1686F9" FontFamily="Arial" HorizontalAlignment="Center" Canvas.Left="205" Canvas.Top="50"/>
+
+            <!-- <TextBlock Text="食之味" HorizontalAlignment="Center" Canvas.Left="225" Canvas.Top="130"/> -->
             <!-- 输入框 -->
             <TextBox Name="MyTextBox1" Width="120" Height="45" Canvas.Left="190" Canvas.Top="150" />
             <TextBox Name="MyTextBox2" Width="120" Height="45" Canvas.Left="190" Canvas.Top="200" />
