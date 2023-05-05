@@ -83,24 +83,24 @@ namespace Lunch_Select
 
                 //  开始数据库的操作
                 //  读取信息
-                // string query = "SELECT 菜名,口味 FROM test.菜单表";
-                // MySqlCommand cmd = new MySqlCommand(query, conn);
-                // MySqlDataReader reader = cmd.ExecuteReader();
-                // while (reader.Read())
-                // {
-                //     MyTextBox1.Text += reader.GetString(0) + Environment.NewLine;
-                //     MyTextBox2.Text += reader.GetString(1) + Environment.NewLine;
-                // }
-                //
-                // reader.Close();
+                string query = "SELECT 菜名,口味 FROM test.菜单表";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    MyTextBox1.Text += reader.GetString(0) + Environment.NewLine;
+                    MyTextBox2.Text += reader.GetString(1) + Environment.NewLine;
+                }
+                
+                reader.Close();
 
                 //  写入操作
-                string menuName = MyTextBox1.Text;
-                string flavor = MyTextBox2.Text;
-                string insertQuery = "INSERT INTO test.菜单表 (菜名, 口味) VALUES ('" + menuName + "', '" + flavor + "')";
-                MySqlCommand writing = new MySqlCommand(insertQuery, conn);
-                writing.ExecuteNonQuery();
-                MessageBox.Show("成功导入菜品。", "写入操作");
+                // string menuName = MyTextBox1.Text;
+                // string flavor = MyTextBox2.Text;
+                // string insertQuery = "INSERT INTO test.菜单表 (菜名, 口味) VALUES ('" + menuName + "', '" + flavor + "')";
+                // MySqlCommand writing = new MySqlCommand(insertQuery, conn);
+                // writing.ExecuteNonQuery();
+                // MessageBox.Show("成功导入菜品。", "写入操作");
 
             }
             catch (Exception ex)
