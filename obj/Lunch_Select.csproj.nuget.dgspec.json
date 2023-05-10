@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ide_tool\\cpp\\Lunch_Select\\Lunch_Select.csproj": {}
+    "D:\\x\\Lunch_Select.csproj": {}
   },
   "projects": {
-    "D:\\ide_tool\\cpp\\Lunch_Select\\Lunch_Select.csproj": {
+    "D:\\x\\Lunch_Select.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ide_tool\\cpp\\Lunch_Select\\Lunch_Select.csproj",
+        "projectUniqueName": "D:\\x\\Lunch_Select.csproj",
         "projectName": "Lunch_Select",
-        "projectPath": "D:\\ide_tool\\cpp\\Lunch_Select\\Lunch_Select.csproj",
+        "projectPath": "D:\\x\\Lunch_Select.csproj",
         "packagesPath": "C:\\Users\\w2001\\.nuget\\packages\\",
-        "outputPath": "D:\\ide_tool\\cpp\\Lunch_Select\\obj\\",
+        "outputPath": "D:\\x\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\ide_tool\\Microsoft\\visual_studio\\Shared\\NuGetPackages"
+          "D:\\Dependence\\visual_studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\w2001\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -76,7 +77,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\w2001\\.dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
