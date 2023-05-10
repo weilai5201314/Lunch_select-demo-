@@ -32,3 +32,6 @@ D:\ide_tool\cpp\Lunch_Select\bin\Debug\net7.0-windows\runtimes\win-x64\native\gs
 D:\ide_tool\cpp\Lunch_Select\bin\Debug\net7.0-windows\runtimes\win-x64\native\k5sprt64.dll
 D:\ide_tool\cpp\Lunch_Select\bin\Debug\net7.0-windows\runtimes\win-x64\native\krb5_64.dll
 D:\ide_tool\cpp\Lunch_Select\bin\Debug\net7.0-windows\runtimes\win-x64\native\krbcc64.dll
+D:\ide_tool\cpp\Lunch_Select\obj\Debug\net7.0-windows\addMenu.g.cs
+D:\ide_tool\cpp\Lunch_Select\obj\Debug\net7.0-windows\Lunch_Select_MarkupCompile.lref
+D:\ide_tool\cpp\Lunch_Select\obj\Debug\net7.0-windows\addMenu.baml

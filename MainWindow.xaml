@@ -2,11 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="食之味" Height="450" Width="500"
-       Background="Bisque"
-       
-    >
+        Background="Bisque">
     <!-- xmlns:local="clr-namespace:Lunch_Select" -->
-    <!-- Background="" --> 
+    <!-- Background="" -->
     <!-- BackgroundStretch="UniformToFill"-->
     <!-- BackgroundStretch="UniformToFill" -->
     <!-- SizeChanged="Window_SizeChanged" -->
@@ -37,10 +35,12 @@
     </Window.Resources>
 
     <Grid>
+       
         <Canvas Name="MyCanvas" Width="500" Height="450">
             <!-- <TextBlock Text="这是默认说明文本" HorizontalAlignment="Center" FontSize="16" VerticalAlignment="Top" Margin="10" /> -->
             <!-- tittle -->
-            <TextBlock Text="食之味" FontSize="30" Foreground="#1686F9" FontFamily="Arial" HorizontalAlignment="Center" Canvas.Left="205" Canvas.Top="50"/>
+            <TextBlock Text="食之味" FontSize="30" Foreground="#1686F9" FontFamily="Arial" HorizontalAlignment="Center"
+                       Canvas.Left="205" Canvas.Top="50" />
 
             <!-- <TextBlock Text="食之味" HorizontalAlignment="Center" Canvas.Left="225" Canvas.Top="130"/> -->
             <!-- 输入框 -->
@@ -49,6 +49,10 @@
             <!-- 按钮 -->
             <Button Content="随机生成菜名" Style="{StaticResource CustomButtonStyle}" Width="120" Height="50"
                     Canvas.Left="190" Canvas.Top="300" Click="ButtonMain_Click" />
+            
+            <!-- 加菜按钮 -->
+            <Button Content="" Style="{StaticResource CustomButtonStyle}" Width="30" Height="30"
+                    Canvas.Left="20" Canvas.Top="20" Click="ButtonMain_Click" />
         </Canvas>
     </Grid>
 </Window>
