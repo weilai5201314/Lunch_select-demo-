@@ -25,14 +25,38 @@ namespace Lunch_Select
     
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        // public static void Navigate(string pageName)
+        // {
+        //     Uri uri = new Uri(pageName, UriKind.Relative);
+        //  
+        //     object newPage = Application.LoadComponent(uri);
+        //
+        //     ((MainWindow)Application.Current.MainWindow).Content = newPage;
+        // }
+        //
+        // private void ButtonAddMenu_Click(object sender, RoutedEventArgs e)
+        // {
+        //     Navigate("addMenu.xaml");
+        // }
+        private void ButtonAddMenu_Click(object sender, RoutedEventArgs e)
+        {
+            AddMenu testmenu = new AddMenu();
+            testmenu.Show();
+            Window.GetWindow(this).Close();
+        }
+
+
+       
+
+       
         
-        
-        /// <summary>
-        /// </summary>
+       
         /// <param name="sender"></param>
         /// <param name="e"></param>
         // 设置了全屏的组件适配
@@ -61,8 +85,8 @@ namespace Lunch_Select
             }
         }
 
-        /// <summary>
-        /// </summary>
+        
+      
         /// <param name="sender"></param>
         /// <param name="e"></param>
         //  设置点击选菜按钮之后的跳转函数
@@ -85,32 +109,33 @@ namespace Lunch_Select
 
                 //  开始数据库的操作
                 //  读取信息
-                // string query = "SELECT 菜名,口味 FROM test.菜单表";
-                // MySqlCommand cmd = new MySqlCommand(query, conn);
-                // MySqlDataReader reader = cmd.ExecuteReader();
-                // while (reader.Read())
-                // {
-                //     MyTextBox1.Text += reader.GetString(0) + Environment.NewLine;
-                //     MyTextBox2.Text += reader.GetString(1) + Environment.NewLine;
-                // }
-                // reader.Close();
+                string query = "SELECT 菜名,口味 FROM test.菜单表";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                
+                while (reader.Read())
+                {
+                    MyTextBox1.Text += reader.GetString(0) + Environment.NewLine;
+                    MyTextBox2.Text += reader.GetString(1) + Environment.NewLine;
+                }
+                reader.Close();
 
                 //  写入操作
-                string menuName = MyTextBox1.Text;
-                string flavor = MyTextBox2.Text;
-                // 判断是否为空
-                if (string.IsNullOrEmpty(menuName) || string.IsNullOrEmpty(flavor))
-                {
-                    MessageBox.Show("输入不能为空.");
-                    return;
-                }
-                // 开始插入
-                string insertQuery = "INSERT INTO test.菜单表 (菜名, 口味) VALUES (@MenuName, @Flavor); SELECT LAST_INSERT_ID();";
-                MySqlCommand writing = new MySqlCommand(insertQuery, conn);
-                writing.Parameters.AddWithValue("@MenuName", menuName);
-                writing.Parameters.AddWithValue("@Flavor", flavor);
-                int newID = Convert.ToInt32(writing.ExecuteScalar());
-                MessageBox.Show($"成功导入菜品:\n- 编号:{newID}\n- 菜名:{menuName}\n- 口味:{flavor}。", "写入操作");
+                // string menuName = MyTextBox1.Text;
+                // string flavor = MyTextBox2.Text;
+                // // 判断是否为空
+                // if (string.IsNullOrEmpty(menuName) || string.IsNullOrEmpty(flavor))
+                // {
+                //     MessageBox.Show("输入不能为空.");
+                //     return;
+                // }
+                // // 开始插入
+                // string insertQuery = "INSERT INTO test.菜单表 (菜名, 口味) VALUES (@MenuName, @Flavor); SELECT LAST_INSERT_ID();";
+                // MySqlCommand writing = new MySqlCommand(insertQuery, conn);
+                // writing.Parameters.AddWithValue("@MenuName", menuName);
+                // writing.Parameters.AddWithValue("@Flavor", flavor);
+                // int newID = Convert.ToInt32(writing.ExecuteScalar());
+                // MessageBox.Show($"成功导入菜品:\n- 编号:{newID}\n- 菜名:{menuName}\n- 口味:{flavor}。", "写入操作");
 
 
             }
@@ -121,12 +146,7 @@ namespace Lunch_Select
             }
         }
         
-        // private void ButtonNavigate_Click(object sender, RoutedEventArgs e)
-        // {
-        //     // 使用 NavigationService 实例的 Navigate 方法导航到 "SecondPage.xaml" 页面
-        //     NavigationService.Navigate(new Uri("SecondPage.xaml", UriKind.Relative));
-        // }
-
+        
 
 
 
