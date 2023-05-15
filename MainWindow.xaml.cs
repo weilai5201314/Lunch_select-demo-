@@ -93,7 +93,11 @@ namespace Lunch_Select
         //  包括了数据库的操作
         private void ButtonMain_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("Hello world.恭喜进入选菜按钮事件");
+            //  MessageBox.Show("Hello world.恭喜进入选菜按钮事件");
+            //  进来先清空聊天框
+            MyTextBox1.Text = "";
+            MyTextBox2.Text = "";
+            
             //  开始连接数据库
             string connStr =
                 "server=localhost;port=3306;user=root;database=test;port=3306;password=12345678;";
@@ -106,43 +110,32 @@ namespace Lunch_Select
             {
                 conn.Open();
                 MessageBox.Show("Success connecting Mysql.","提示");
-
-                //  开始数据库的操作
-                //  读取信息
-                string query = "SELECT 菜名,口味 FROM test.菜单表";
+                
+                //  先获取随机数范围
+                string getLastIDQuery = "SELECT MAX(编号) FROM test.菜单表";
+                MySqlCommand getLastIDCmd = new MySqlCommand(getLastIDQuery, conn);
+                int lastID = Convert.ToInt32(getLastIDCmd.ExecuteScalar());
+                //  生成随机数
+                Random random = new Random();
+                int randomID = random.Next(1, lastID + 1); 
+                //  进入数据库开始查询
+                string query = $"SELECT 菜名, 口味 FROM test.菜单表 WHERE 编号 = {randomID}";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataReader reader = cmd.ExecuteReader();
-                
-                while (reader.Read())
+                //  开始赋值
+                if (reader.Read())
                 {
                     MyTextBox1.Text += reader.GetString(0) + Environment.NewLine;
                     MyTextBox2.Text += reader.GetString(1) + Environment.NewLine;
+                    reader.Close();
+                   
                 }
-                reader.Close();
-
-                //  写入操作
-                // string menuName = MyTextBox1.Text;
-                // string flavor = MyTextBox2.Text;
-                // // 判断是否为空
-                // if (string.IsNullOrEmpty(menuName) || string.IsNullOrEmpty(flavor))
-                // {
-                //     MessageBox.Show("输入不能为空.");
-                //     return;
-                // }
-                // // 开始插入
-                // string insertQuery = "INSERT INTO test.菜单表 (菜名, 口味) VALUES (@MenuName, @Flavor); SELECT LAST_INSERT_ID();";
-                // MySqlCommand writing = new MySqlCommand(insertQuery, conn);
-                // writing.Parameters.AddWithValue("@MenuName", menuName);
-                // writing.Parameters.AddWithValue("@Flavor", flavor);
-                // int newID = Convert.ToInt32(writing.ExecuteScalar());
-                // MessageBox.Show($"成功导入菜品:\n- 编号:{newID}\n- 菜名:{menuName}\n- 口味:{flavor}。", "写入操作");
-
-
+                
             }
             catch (Exception ex)
             {
                 // Console.WriteLine(exception);
-                throw;
+                MessageBox.Show(ex.Message, "错误");
             }
         }
         
