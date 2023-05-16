@@ -12,58 +12,102 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 //引用数据库
 using MySql.Data.MySqlClient;
 
 
 namespace Lunch_Select
 {
-    
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    
     public partial class MainWindow : Window
     {
-        
+        /// <summary>
+        /// 定义的各种类的列表
+        /// 一般定义了要去MainWindow里面添加
+        public List<string> FlavorOptions { get; set; } // 下拉框的数据源
+
         public MainWindow()
         {
             InitializeComponent();
+           
+            FlavorOptions = new List<string>(); // 初始化下拉框数据源
+            FlavorComboBox.ItemsSource = FlavorOptions; // 将数据源绑定到ComboBox
+            
+            FlavorOptions.Add("全部");
+            string connStr = "server=localhost;port=3306;user=root;database=test;password=12345678;";
+            using (MySqlConnection conn = new MySqlConnection(connStr))
+            {
+                try
+                {
+                    // MessageBox.Show("Connecting Mysql......", "提示");
+                    conn.Open();
+                    // 查询口味选项
+                    string query = "SELECT DISTINCT 口味 FROM test.菜单表";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string flavor = reader.GetString(0);
+                        FlavorOptions.Add(flavor);
+                    }
+            
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "错误");
+                }
+            }
         }
 
-        // public static void Navigate(string pageName)
-        // {
-        //     Uri uri = new Uri(pageName, UriKind.Relative);
-        //  
-        //     object newPage = Application.LoadComponent(uri);
-        //
-        //     ((MainWindow)Application.Current.MainWindow).Content = newPage;
-        // }
-        //
-        // private void ButtonAddMenu_Click(object sender, RoutedEventArgs e)
-        // {
-        //     Navigate("addMenu.xaml");
-        // }
+        /// <summary>
+        /// 跳转到加菜菜单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonAddMenu_Click(object sender, RoutedEventArgs e)
         {
             AddMenu testmenu = new AddMenu();
             testmenu.Show();
-            Window.GetWindow(this).Close();
+            MainWindow.GetWindow(this).Close();
         }
 
-
-       
-
-       
+        private void InitializeComboBox()
+        {
+            string connStr = "server=localhost;port=3306;user=root;database=test;password=12345678;";
+            using (MySqlConnection conn = new MySqlConnection(connStr))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT DISTINCT 口味 FROM test.菜单表";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string flavor = reader.GetString(0);
+                        FlavorOptions.Add(flavor);
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "错误");
+                }
+            }
+        }
         
-       
         /// <param name="sender"></param>
         /// <param name="e"></param>
         // 设置了全屏的组件适配
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // InitializeComboBox();
             // 获取窗口的宽度和高度
-
+            
             // 获取窗口的宽度和高度
             double width = MyCanvas.ActualWidth;
             double height = MyCanvas.ActualHeight;
@@ -83,65 +127,122 @@ namespace Lunch_Select
             {
                 // 处理Children[0]为空的情况
             }
+            
+            
         }
 
-        
-      
         /// <param name="sender"></param>
         /// <param name="e"></param>
         //  设置点击选菜按钮之后的跳转函数
         //  包括了数据库的操作
+        // private void ButtonMain_Click(object sender, RoutedEventArgs e)
+        //  {
+        //      //  MessageBox.Show("Hello world.恭喜进入选菜按钮事件");
+        //      //  进来先清空聊天框
+        //      Main_menu.Text = "";
+        //      //Main_flavor.Text = "";
+        //
+        //      //  开始连接数据库
+        //      string connStr = "server=localhost;port=3306;user=root;database=test;password=12345678;";
+        //      
+        //      //MessageBox.Show("Connecting Mysql......", "提示");
+        //      
+        //      MySqlConnection conn = new MySqlConnection(connStr);
+        //      try
+        //      {
+        //          conn.Open();
+        //          MessageBox.Show("Success connecting Mysql.","提示");
+        //
+        //          //  先获取随机数范围
+        //          string getLastIdQuery = "SELECT MAX(编号) FROM test.菜单表";
+        //          MySqlCommand getLastIdCmd = new MySqlCommand(getLastIdQuery, conn);
+        //          int lastId = Convert.ToInt32(getLastIdCmd.ExecuteScalar());
+        //          //  生成随机数
+        //          Random random = new Random();
+        //          int randomId = random.Next(1, lastId + 1);
+        //          //  进入数据库开始查询
+        //          string query = $"SELECT 菜名, 口味 FROM test.菜单表 WHERE 编号 = {randomId}";
+        //          MySqlCommand cmd = new MySqlCommand(query, conn);
+        //          MySqlDataReader reader = cmd.ExecuteReader();
+        //          //  开始赋值
+        //          if (reader.Read())
+        //          {
+        //              Main_menu.Text += reader.GetString(0) + Environment.NewLine;
+        //              //Main_flavor.Text += reader.GetString(1) + Environment.NewLine;
+        //              reader.Close();
+        //          }
+        //      }
+        //      catch (Exception ex)
+        //      {
+        //          // Console.WriteLine(exception);
+        //          MessageBox.Show(ex.Message, "错误");
+        //      }
+        //      
+        //      
+        //  }
+        //  
         private void ButtonMain_Click(object sender, RoutedEventArgs e)
         {
-            //  MessageBox.Show("Hello world.恭喜进入选菜按钮事件");
-            //  进来先清空聊天框
-            MyTextBox1.Text = "";
-            MyTextBox2.Text = "";
-            
-            //  开始连接数据库
-            string connStr =
-                "server=localhost;port=3306;user=root;database=test;port=3306;password=12345678;";
+            Main_menu.Text = "";
 
-            MessageBox.Show("Connecting Mysql......","提示");
-
-
+            string connStr = "server=localhost;port=3306;user=root;database=test;password=12345678;";
             MySqlConnection conn = new MySqlConnection(connStr);
+
             try
             {
                 conn.Open();
-                MessageBox.Show("Success connecting Mysql.","提示");
-                
-                //  先获取随机数范围
-                string getLastIDQuery = "SELECT MAX(编号) FROM test.菜单表";
-                MySqlCommand getLastIDCmd = new MySqlCommand(getLastIDQuery, conn);
-                int lastID = Convert.ToInt32(getLastIDCmd.ExecuteScalar());
-                //  生成随机数
-                Random random = new Random();
-                int randomID = random.Next(1, lastID + 1); 
-                //  进入数据库开始查询
-                string query = $"SELECT 菜名, 口味 FROM test.菜单表 WHERE 编号 = {randomID}";
+                // MessageBox.Show("Success connecting Mysql.", "提示");
+
+                string query;
+                if (FlavorComboBox.SelectedItem != null)
+                {
+                    if (FlavorComboBox.SelectedItem != "全部")
+                    {
+                        string selectedFlavor = FlavorComboBox.SelectedItem.ToString();
+                        query = $"SELECT 菜名 FROM test.菜单表 WHERE 口味 = '{selectedFlavor}'";
+                    }
+                    else
+                    {
+                        query = "SELECT 菜名 FROM test.菜单表";
+                    }
+                }
+                else
+                {
+                    query = "SELECT 菜名 FROM test.菜单表";
+                }
+
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataReader reader = cmd.ExecuteReader();
-                //  开始赋值
-                if (reader.Read())
+
+                List<string> menuOptions = new List<string>();
+
+                while (reader.Read())
                 {
-                    MyTextBox1.Text += reader.GetString(0) + Environment.NewLine;
-                    MyTextBox2.Text += reader.GetString(1) + Environment.NewLine;
-                    reader.Close();
-                   
+                    menuOptions.Add(reader.GetString(0));
                 }
-                
+
+                reader.Close();
+
+                if (menuOptions.Count > 0)
+                {
+                    Random random = new Random();
+                    int randomIndex = random.Next(0, menuOptions.Count);
+                    Main_menu.Text = menuOptions[randomIndex];
+                }
+                else
+                {
+                    Main_menu.Text = "No menu options available.";
+                }
             }
             catch (Exception ex)
             {
-                // Console.WriteLine(exception);
                 MessageBox.Show(ex.Message, "错误");
             }
         }
-        
-        
 
-
-
+        private void FlavorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ButtonMain_Click(sender, e);
+        }
     }
 }

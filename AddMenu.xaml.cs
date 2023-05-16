@@ -73,7 +73,7 @@ public partial class AddMenu : Window
         try
         {
             conn.Open();
-            MessageBox.Show("Success connecting Mysql!", "提示");
+            // MessageBox.Show("Success connecting Mysql!", "提示");
 
             //  开始数据库的操作
 
