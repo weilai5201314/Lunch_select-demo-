@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+// using System.Windows.Controls.Primitives;
+// using System.Windows.Documents;
+// using System.Windows.Media; 
 //引用数据库
 using MySql.Data.MySqlClient;
 
@@ -101,7 +104,10 @@ public partial class AddMenu : Window
         catch (Exception ex)
         {
             // Console.WriteLine(exception);
+            MessageBox.Show(ex.Message, "Addmenu:ButtonAdd_Click错误");
             throw;
         }
     }
+    
+    
 }

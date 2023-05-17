@@ -33,34 +33,12 @@ namespace Lunch_Select
         {
             InitializeComponent();
            
+            //  初始化下拉框
             FlavorOptions = new List<string>(); // 初始化下拉框数据源
             FlavorComboBox.ItemsSource = FlavorOptions; // 将数据源绑定到ComboBox
-            
             FlavorOptions.Add("全部");
-            string connStr = "server=localhost;port=3306;user=root;database=test;password=12345678;";
-            using (MySqlConnection conn = new MySqlConnection(connStr))
-            {
-                try
-                {
-                    // MessageBox.Show("Connecting Mysql......", "提示");
-                    conn.Open();
-                    // 查询口味选项
-                    string query = "SELECT DISTINCT 口味 FROM test.菜单表";
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
-                    MySqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        string flavor = reader.GetString(0);
-                        FlavorOptions.Add(flavor);
-                    }
+            InitializeComboBox();// 进入读取数据函数
             
-                    reader.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "错误");
-                }
-            }
         }
 
         /// <summary>
@@ -75,6 +53,9 @@ namespace Lunch_Select
             MainWindow.GetWindow(this).Close();
         }
 
+        /// <summary>
+        /// 初始化下拉框
+        /// 读取数据库的相关操作
         private void InitializeComboBox()
         {
             string connStr = "server=localhost;port=3306;user=root;database=test;password=12345678;";
@@ -82,7 +63,9 @@ namespace Lunch_Select
             {
                 try
                 {
+                    // MessageBox.Show("Connecting Mysql......", "提示");
                     conn.Open();
+                    // 查询口味选项
                     string query = "SELECT DISTINCT 口味 FROM test.菜单表";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     MySqlDataReader reader = cmd.ExecuteReader();
@@ -183,7 +166,7 @@ namespace Lunch_Select
         //  
         private void ButtonMain_Click(object sender, RoutedEventArgs e)
         {
-            Main_menu.Text = "";
+            Main_menu.Text = "";    //  清空展示框
 
             string connStr = "server=localhost;port=3306;user=root;database=test;password=12345678;";
             MySqlConnection conn = new MySqlConnection(connStr);
@@ -196,7 +179,7 @@ namespace Lunch_Select
                 string query;
                 if (FlavorComboBox.SelectedItem != null)
                 {
-                    if (FlavorComboBox.SelectedItem != "全部")
+                    if (FlavorComboBox.SelectedItem != "全部")    //  判断是全部还是特定口味
                     {
                         string selectedFlavor = FlavorComboBox.SelectedItem.ToString();
                         query = $"SELECT 菜名 FROM test.菜单表 WHERE 口味 = '{selectedFlavor}'";
@@ -231,15 +214,18 @@ namespace Lunch_Select
                 }
                 else
                 {
-                    Main_menu.Text = "No menu options available.";
+                    Main_menu.Text = "没有这道菜。";
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "错误");
+                MessageBox.Show(ex.Message, "Mainwindow：button_main错误");
             }
         }
 
+        /// <summary>
+        /// 辅助下拉框的点击函数
+        /// 下拉框选择口味之后，直接自动点击按钮
         private void FlavorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ButtonMain_Click(sender, e);

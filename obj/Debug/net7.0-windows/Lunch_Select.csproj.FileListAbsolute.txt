@@ -72,3 +72,5 @@ D:\x\obj\Debug\net7.0-windows\refint\Lunch_Select.dll
 D:\x\obj\Debug\net7.0-windows\Lunch_Select.pdb
 D:\x\obj\Debug\net7.0-windows\Lunch_Select.genruntimeconfig.cache
 D:\x\obj\Debug\net7.0-windows\ref\Lunch_Select.dll
+D:\x\obj\Debug\net7.0-windows\users.g.cs
+D:\x\obj\Debug\net7.0-windows\users.baml

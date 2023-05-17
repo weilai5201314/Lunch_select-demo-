@@ -42,6 +42,17 @@
             <TextBlock Text="{Binding}" />
         </DataTemplate>
 
+        <!-- 文本框字体央视 -->
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Foreground" Value="#C08E71" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Foreground" Value="#BB905E" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+
     </Window.Resources>
 
     <Grid>
@@ -49,31 +60,57 @@
         <Canvas Name="MyCanvas" Width="500" Height="450">
             <!-- <TextBlock Text="这是默认说明文本" HorizontalAlignment="Center" FontSize="16" VerticalAlignment="Top" Margin="10" /> -->
             <!-- tittle -->
-            <TextBlock Text="食之味" FontSize="30" Foreground="#1686F9" FontFamily="Arial" HorizontalAlignment="Center"
-                       Canvas.Left="205" Canvas.Top="50" />
+            <TextBlock Text="食之味" FontSize="35" Foreground="#1686F9" FontFamily="Arial" HorizontalAlignment="Center"
+                       Canvas.Left="200" Canvas.Top="30" />
+            <TextBlock Text="猜猜今天吃什么呢？" FontSize="20" Foreground="#8B79BF" FontFamily="Arial"
+                       HorizontalAlignment="Center"
+                       Canvas.Left="165" Canvas.Top="100">
+            </TextBlock>
 
             <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- 文本框部分 -->
             <!-- 下拉框 -->
             <!-- <ComboBox Width="120" Height="45" Canvas.Left="190" Canvas.Top="150" -->
             <!--           ItemTemplate="{StaticResource FlavorItemTemplate}" ItemsSource="{Binding FlavorOptions}" /> -->
-            <ComboBox x:Name="FlavorComboBox" Width="120" Height="45" Canvas.Left="190" Canvas.Top="150"
+            <ComboBox x:Name="FlavorComboBox" Width="150" Height="45" Canvas.Left="175" Canvas.Top="150"
                       ItemTemplate="{StaticResource FlavorItemTemplate}" ItemsSource="{Binding FlavorOptions}"
-                      SelectionChanged="FlavorComboBox_SelectionChanged" />
-        
-
+                      SelectionChanged="FlavorComboBox_SelectionChanged"
+                      Style="{StaticResource ComboBoxStyle}" />
 
             <!-- 输入框 -->
-            <TextBox Name="Main_menu" Width="120" Height="45" Canvas.Left="190" Canvas.Top="200" />
+            <TextBox Name="Main_menu" Width="150" Height="45" Canvas.Left="175" Canvas.Top="200"
+                     Style="{StaticResource TextBoxStyle}" />
             <!-- <TextBox Name="Main_flavor" Width="120" Height="45" Canvas.Left="190" Canvas.Top="200" /> -->
-            <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
+
+            <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- 功能函数部分 -->
             <!-- 随机出菜按钮 -->
             <Button Content="随机生成菜名" Style="{StaticResource CustomButtonStyle}" Width="120" Height="50"
                     Canvas.Left="190" Canvas.Top="300" Click="ButtonMain_Click" />
 
             <!-- 设置页面按钮 -->
-            <Button Content="" Style="{StaticResource CustomButtonStyle}" Width="30" Height="30"
-                    Canvas.Left="20" Canvas.Top="20" Click="ButtonAddMenu_Click" />
+            <Button Content="+" Style="{StaticResource CustomButtonStyle}" Width="30" Height="30"
+                    Canvas.Left="20" Canvas.Top="20" Click="ButtonAddMenu_Click"/>
+            
+            <!-- <Button  Width="30" Height="80" Canvas.Left="20" Canvas.Top="20" -->
+            <!--         Click="ButtonAddMenu_Click"> -->
+            <!--     <Image Source="static/images/settings.png" /> -->
+            <!-- </Button> -->
+            <!-- -->
+            <!-- <Button Style="{StaticResource CustomButtonStyle}" Width="30" Height="130" -->
+            <!--         Canvas.Left="20" Canvas.Top="20" Click="ButtonAddMenu_Click"> -->
+            <!--     <Button.Template> -->
+            <!--         <ControlTemplate TargetType="Button"> -->
+            <!--             <Grid> -->
+            <!--                 <Image Source="static/images/settings.png" /> -->
+            <!--             </Grid> -->
+            <!--         </ControlTemplate> -->
+            <!--     </Button.Template> -->
+            <!-- </Button> -->
+
 
         </Canvas>
     </Grid>
