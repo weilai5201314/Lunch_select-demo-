@@ -1,11 +1,11 @@
-﻿<Window x:Class="Lunch_Select.AddMenu"
+﻿<Window x:Class="Lunch_Select.UserAdmin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Lunch_Select"
         mc:Ignorable="d"
-        Title="AddMenu" Height="450" Width="500"
+        Title="UserAdmin" Height="450" Width="500"
         Background="Bisque">
     <Window.Resources>
         <!-- 添加菜品按钮样式 -->
@@ -31,13 +31,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <!-- 文本框字体央视 -->
-        <!-- <Style x:Key="ComboBoxStyle" TargetType="ComboBox"> -->
-        <!--     <Setter Property="Foreground" Value="#C08E71" /> -->
-        <!--     <Setter Property="FontSize" Value="20" /> -->
-        <!-- </Style> -->
-
+        
+        <!-- 输入文本框字体 -->
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
             <Setter Property="Foreground" Value="#BB905E" />
             <Setter Property="FontSize" Value="20" />
@@ -52,43 +47,36 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <!-- <TextBlock Text="This is the Setting page" FontSize="24" /> -->
-        <!-- -->
-
-
-        <Canvas Name="Addmenu" Width="500" Height="450">
-            <!-- <TextBlock Text="这是默认说明文本" HorizontalAlignment="Center" FontSize="16" VerticalAlignment="Top" Margin="10" /> -->
-            <!-- tittle -->
-            <TextBlock Text="请在下方输入想添加的菜名和口味" FontSize="20" Foreground="#1686F9" FontFamily="Arial"
+        
+        <Canvas Name="Useradmin" Width="500" Height="450">
+            <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- 文本类 -->
+            <TextBlock Text="请登录,没有账号请先注册" FontSize="20" Foreground="#1686F9" FontFamily="Arial"
                        HorizontalAlignment="Center"
-                       Canvas.Left="100" Canvas.Top="60" />
-
-            <!-- <TextBlock Text="食之味" HorizontalAlignment="Center" Canvas.Left="225" Canvas.Top="130"/> -->
-
-
-            <!-- 输入框 -->
-            <Label Content="菜名：" Style="{StaticResource InputLabelStyle}" 
+                       Canvas.Left="135" Canvas.Top="60" />
+            
+            <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- 输入框类 -->
+            <Label Content="账号：" Style="{StaticResource InputLabelStyle}" 
                    HorizontalAlignment="Left" VerticalAlignment="Center" 
                    Canvas.Left="120" Canvas.Top="160"/>
-            <TextBox Name="MyTextBox1" Width="120" Height="45" Canvas.Left="190" Canvas.Top="150"
+            <TextBox Name="Account" Width="120" Height="45" Canvas.Left="190" Canvas.Top="150"
                      Style="{StaticResource TextBoxStyle}" />
             
-            <Label Content="口味：" Style="{StaticResource InputLabelStyle}" 
+            <Label Content="密码：" Style="{StaticResource InputLabelStyle}" 
                    HorizontalAlignment="Left" VerticalAlignment="Center" 
                    Canvas.Left="120" Canvas.Top="210"/>
-            <TextBox Name="MyTextBox2" Width="120" Height="45" Canvas.Left="190" Canvas.Top="200"
+            <TextBox Name="Password" Width="120" Height="45" Canvas.Left="190" Canvas.Top="200"
                      Style="{StaticResource TextBoxStyle}" />
-            <!-- 按钮 -->
-            <Button Content="添加菜品" Style="{StaticResource CustomButtonStyle}" Width="120" Height="50"
-                    Canvas.Left="190" Canvas.Top="300" Click="ButtonAdd_Click" />
 
-            <!-- <Button  Content="返回主菜单" Style="{StaticResource CustomButtonStyle}" Width="120" Height="50" -->
-            <!--          Canvas.Left="190" Canvas.Top="350" -->
-            <!--         Click="BackButton_Click"></Button> -->
+            
+            <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- 功能按钮类 -->
+            <Button Content="登录" Style="{StaticResource CustomButtonStyle}" Width="120" Height="50"
+                    Canvas.Left="190" Canvas.Top="260"  Click="Jump_LogIn"/>
+            <Button Content="注册" Style="{StaticResource CustomButtonStyle}" Width="120" Height="50"
+                    Canvas.Left="190" Canvas.Top="320"  />
 
-            <!-- 返回主菜单按钮 -->
-            <Button Content="-" Style="{StaticResource CustomButtonStyle}" Width="30" Height="30"
-                    Canvas.Left="20" Canvas.Top="20" Click="BackButton_Click" />
         </Canvas>
     </Grid>
 </Window>

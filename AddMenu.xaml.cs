@@ -35,13 +35,11 @@ public partial class AddMenu : Window
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
         // 获取窗口的宽度和高度
-
-        // 获取窗口的宽度和高度
-        double width = MyCanvas.ActualWidth;
-        double height = MyCanvas.ActualHeight;
+        double width = Addmenu.ActualWidth;
+        double height = Addmenu.ActualHeight;
 
         // 设置按钮的宽度和高度为窗口的1/3
-        Button btn = MyCanvas.Children[0] as Button;
+        Button btn = Addmenu.Children[0] as Button;
         if (btn != null)
         {
             btn.Width = width / 3;
@@ -89,7 +87,17 @@ public partial class AddMenu : Window
                 MessageBox.Show("输入不能为空.");
                 return;
             }
-            // // 开始插入
+            //  判断是否已经有这道菜
+            string checkQuery = "SELECT COUNT(*) FROM test.菜单表 WHERE 菜名 = @MenuName";
+            MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn);
+            checkCmd.Parameters.AddWithValue("@MenuName", menuName);
+            int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+            if (count > 0)
+            {
+                MessageBox.Show("菜名已存在，请输入不同的菜名。","提示");
+                return;
+            }
+            // 开始插入
             string insertQuery = "INSERT INTO test.菜单表 (菜名, 口味) VALUES (@MenuName, @Flavor); SELECT LAST_INSERT_ID();";
             MySqlCommand writing = new MySqlCommand(insertQuery, conn);
             writing.Parameters.AddWithValue("@MenuName", menuName);

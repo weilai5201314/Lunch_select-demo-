@@ -92,11 +92,11 @@ namespace Lunch_Select
             // 获取窗口的宽度和高度
             
             // 获取窗口的宽度和高度
-            double width = MyCanvas.ActualWidth;
-            double height = MyCanvas.ActualHeight;
+            double width = mainwindow.ActualWidth;
+            double height = mainwindow.ActualHeight;
 
             // 设置按钮的宽度和高度为窗口的1/3
-            Button btn = MyCanvas.Children[0] as Button;
+            Button btn = mainwindow.Children[0] as Button;
             if (btn != null)
             {
                 btn.Width = width / 3;

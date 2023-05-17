@@ -57,7 +57,7 @@
 
     <Grid>
 
-        <Canvas Name="MyCanvas" Width="500" Height="450">
+        <Canvas Name="mainwindow" Width="500" Height="450">
             <!-- <TextBlock Text="这是默认说明文本" HorizontalAlignment="Center" FontSize="16" VerticalAlignment="Top" Margin="10" /> -->
             <!-- tittle -->
             <TextBlock Text="食之味" FontSize="35" Foreground="#1686F9" FontFamily="Arial" HorizontalAlignment="Center"
