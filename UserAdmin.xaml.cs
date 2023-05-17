@@ -4,6 +4,7 @@ using System.Windows.Controls;
 
 //引用数据库
 using MySql.Data.MySqlClient;
+
 namespace Lunch_Select;
 
 public partial class UserAdmin : Window
@@ -48,10 +49,64 @@ public partial class UserAdmin : Window
         UserAdmin.GetWindow(this).Close();
     }
 
+    /// <summary>
+    /// 验证用户的数据库操作
+    /// </summary>
+    private void CheckUserAccount()
+    {
+        string connStr = "server=localhost;port=3306;user=root;database=test;port=3306;password=12345678;";
+        MySqlConnection conn = new MySqlConnection(connStr);
+        MessageBox.Show("Connecting Mysql......", "提示");
+        try
+        {
+            conn.Open();
+            MessageBox.Show("Success connecting Mysql!", "提示");
+
+            //  开始数据库操作
+            string account = Account.Text;
+            string password = Password.Text;
+            string query = $"SELECT * FROM users WHERE UserName = '{account}' AND Password = '{password}'";
+            //  判断是否为空
+            if (string.IsNullOrEmpty(account) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("输入不能为空.");
+                return;
+            }
+
+            //  开始判断是否有用户
+            // query=$"SELECT UserName FROM test.菜单表 WHERE 口味 = '{selectedFlavor}'"
+            MySqlCommand command = new MySqlCommand(query, conn);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            // 检查是否有匹配的记录
+            if (reader.HasRows)
+            {
+                // 存在匹配的记录，登录成功
+                MessageBox.Show("登录成功！", "提示");
+                Jump_Mainwindos();
+            }
+            else
+            {
+                // 没有匹配的记录，登录失败
+                MessageBox.Show("账号或密码错误，请重新输入。", "提示");
+            }
+
+            // 关闭读取器
+            reader.Close();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
     ///
     /// 登录按钮
     private void Jump_LogIn(object sender, RoutedEventArgs e)
     {
-        Jump_Mainwindos();
+        CheckUserAccount();
+        //  开始跳转
+        //Jump_Mainwindos();
     }
 }
