@@ -56,11 +56,11 @@ public partial class UserAdmin : Window
     {
         string connStr = "server=localhost;port=3306;user=root;database=test;port=3306;password=12345678;";
         MySqlConnection conn = new MySqlConnection(connStr);
-        MessageBox.Show("Connecting Mysql......", "提示");
+        // MessageBox.Show("Connecting Mysql......", "提示");
         try
         {
             conn.Open();
-            MessageBox.Show("Success connecting Mysql!", "提示");
+            // MessageBox.Show("Success connecting Mysql!", "提示");
 
             //  开始数据库操作
             string account = Account.Text;
@@ -83,12 +83,16 @@ public partial class UserAdmin : Window
             {
                 // 存在匹配的记录，登录成功
                 MessageBox.Show("登录成功！", "提示");
+                //  开始跳转主页面
                 Jump_Mainwindos();
             }
             else
             {
                 // 没有匹配的记录，登录失败
                 MessageBox.Show("账号或密码错误，请重新输入。", "提示");
+                //  清空输入框
+                Account.Text = "";
+                Password.Text = "";
             }
 
             // 关闭读取器
@@ -108,5 +112,19 @@ public partial class UserAdmin : Window
         CheckUserAccount();
         //  开始跳转
         //Jump_Mainwindos();
+    }
+
+    /// <summary>
+    /// 前往注册页面
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void Jump_SignUp(object sender, RoutedEventArgs e)
+    {
+        // throw new NotImplementedException();
+        SignUp signup = new SignUp();
+        signup.Show();
+        UserAdmin.GetWindow(this).Close();
+
     }
 }
