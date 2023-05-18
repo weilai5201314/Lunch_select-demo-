@@ -32,6 +32,16 @@
     <ItemGroup>
       <Page Remove="ConsoleApp1\**" />
       <Page Remove="ConsoleApp3\**" />
+      <Page Update="SignUp.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="UserAdmin.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
     </ItemGroup>
 
     <ItemGroup>
