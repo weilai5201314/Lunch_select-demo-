@@ -76,3 +76,7 @@ D:\x\obj\Debug\net7.0-windows\SignUp.g.cs
 D:\x\obj\Debug\net7.0-windows\UserAdmin.g.cs
 D:\x\obj\Debug\net7.0-windows\SignUp.baml
 D:\x\obj\Debug\net7.0-windows\UserAdmin.baml
+D:\x\obj\Debug\net7.0-windows\FindPassWord.g.cs
+D:\x\obj\Debug\net7.0-windows\FindPassWord.baml
+D:\x\obj\Debug\net7.0-windows\AlterPassWord.g.cs
+D:\x\obj\Debug\net7.0-windows\AlterPassWord.baml

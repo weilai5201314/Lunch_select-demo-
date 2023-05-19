@@ -95,7 +95,7 @@
             <Button Content="+" Style="{StaticResource CustomButtonStyle}" Width="30" Height="30"
                     Canvas.Left="20" Canvas.Top="20" Click="ButtonAddMenu_Click"/>
             
-            <!-- <Button  Width="30" Height="80" Canvas.Left="20" Canvas.Top="20" -->
+            <!-- <Button  Width="30" Height="30" Canvas.Left="20" Canvas.Top="20" -->
             <!--         Click="ButtonAddMenu_Click"> -->
             <!--     <Image Source="static/images/settings.png" /> -->
             <!-- </Button> -->

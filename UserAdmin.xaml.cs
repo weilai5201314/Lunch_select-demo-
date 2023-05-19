@@ -91,7 +91,7 @@ public partial class UserAdmin : Window
                 // 没有匹配的记录，登录失败
                 MessageBox.Show("账号或密码错误，请重新输入。", "提示");
                 //  清空输入框
-                Account.Text = "";
+                // Account.Text = "";
                 Password.Text = "";
             }
 
@@ -126,5 +126,12 @@ public partial class UserAdmin : Window
         signup.Show();
         UserAdmin.GetWindow(this).Close();
 
+    }
+
+    private void Jump_FindPass(object sender, RoutedEventArgs e)
+    {
+        FindPassWord findpass = new FindPassWord();
+        findpass.Show();
+        UserAdmin.GetWindow(this).Close();
     }
 }
