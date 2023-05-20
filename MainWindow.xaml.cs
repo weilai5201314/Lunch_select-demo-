@@ -48,9 +48,11 @@ namespace Lunch_Select
         /// <param name="e"></param>
         private void ButtonAddMenu_Click(object sender, RoutedEventArgs e)
         {
+            this.IsEnabled = false;
             AddMenu testmenu = new AddMenu();
             testmenu.Show();
-            MainWindow.GetWindow(this).Close();
+            testmenu.Closed += (sender, e) => { this.IsEnabled = true; };
+            //MainWindow.GetWindow(this).Close();
         }
 
         /// <summary>

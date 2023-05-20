@@ -73,9 +73,9 @@
             <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <!-- 功能按钮类 -->
             <Button Content="登录" Style="{StaticResource CustomButtonStyle}" Width="120" Height="50"
-                    Canvas.Left="260" Canvas.Top="260"  Click="Jump_LogIn"/>
+                    Canvas.Left="195" Canvas.Top="260"  Click="Jump_LogIn"/>
             <Button Content="前往注册" Style="{StaticResource CustomButtonStyle}" Width="120" Height="50"
-                    Canvas.Left="120" Canvas.Top="260" Click="Jump_SignUp"  />
+                    Canvas.Left="260" Canvas.Top="330" Click="Jump_SignUp"  />
             <Button Content="找回密码" Style="{StaticResource CustomButtonStyle}" Width="120" Height="50"
                     Canvas.Left="120" Canvas.Top="330" Click="Jump_FindPass"  />
 

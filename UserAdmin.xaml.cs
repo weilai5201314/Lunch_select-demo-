@@ -121,10 +121,11 @@ public partial class UserAdmin : Window
     /// <param name="e"></param>
     private void Jump_SignUp(object sender, RoutedEventArgs e)
     {
-        // throw new NotImplementedException();
+        this.IsEnabled = false;
         SignUp signup = new SignUp();
+        signup.Closed += (sender, e) => { this.IsEnabled = true; };
         signup.Show();
-        UserAdmin.GetWindow(this).Close();
+        //UserAdmin.GetWindow(this).Close();
 
     }
 

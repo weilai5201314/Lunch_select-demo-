@@ -23,19 +23,20 @@ public partial class FindPassWord : Window
         try
         {
             conn.Open();
-            MessageBox.Show("Success connecting Mysql!", "找回密码");
+            // MessageBox.Show("Success connecting Mysql!", "找回密码");
             //  开始赋值
             string account = Account.Text;
             string tip = Tip.Text;
             string checkQuery = "SELECT * FROM users WHERE UserName=@Account AND tip = @Tip";
             string insertQuery = "INSERT INTO users (Password) VALUES (@Password); SELECT LAST_INSERT_ID();";
-            
+
             //  判断是否为空
             if (string.IsNullOrEmpty(account) || string.IsNullOrEmpty(tip))
             {
                 MessageBox.Show("请填写全部内容", "找回密码");
                 return;
             }
+
             //  判断是否存在
             using (MySqlCommand command = new MySqlCommand(checkQuery, conn))
             {
@@ -45,21 +46,23 @@ public partial class FindPassWord : Window
                 // 验证失败
                 if (!reader.HasRows)
                 {
-                    MessageBox.Show("账号或提示错误，请重新输入","找回密码");
+                    MessageBox.Show("账号或提示错误，请重新输入", "找回密码");
                     //  清空
                     Account.Text = "";
                     Tip.Text = "";
                     return;
                 }
+
                 reader.Close();
             }
-            //  开始跳转修改密码
-            MessageBox.Show("验证成功！");
-            Jump_AlterPass();
-            
-                
-            
 
+            //  开始跳转修改密码
+            AlterPassWord alterPassWord = new AlterPassWord();
+            alterPassWord.FindPassWordInstance = this;
+            Jump_AlterPass(alterPassWord);
+            //  修改完之后清空输入
+            // Account.Text = "";
+            // Tip.Text = "";
         }
         catch (Exception exception)
         {
@@ -76,16 +79,16 @@ public partial class FindPassWord : Window
         UserAdmin useradmin = new UserAdmin();
         useradmin.Show();
         FindPassWord.GetWindow(this).Close();
-        
     }
 
     /// <summary>
     /// 跳转修改密码页面
     /// </summary>
-    private void Jump_AlterPass()
+    private void Jump_AlterPass(AlterPassWord alterPassWord)
     {
-        AlterPassWord alterpass = new AlterPassWord();
-        alterpass.Show();
-        FindPassWord.GetWindow(this).Close();
+        this.IsEnabled = false; //禁用原来的窗口
+        // 订阅新窗口的 Closed 事件，在窗口关闭时恢复原始窗口的可用状态
+        alterPassWord.Closed += (sender, e) => { this.IsEnabled = true; };
+        alterPassWord.Show();
     }
 }
