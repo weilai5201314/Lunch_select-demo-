@@ -41,7 +41,7 @@ public partial class SignUp : Window
         try
         {
             conn.Open();
-            MessageBox.Show("Success connecting Mysql!", "注册");
+            // MessageBox.Show("Success connecting Mysql!", "注册");
 
             //  开始数据库操作
             string username = Account.Text;

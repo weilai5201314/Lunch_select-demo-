@@ -12,6 +12,8 @@ namespace Lunch_Select;
 
 public partial class AddMenu : Window
 {
+    public string UserId; //全局用户ID
+
     public AddMenu()
     {
         InitializeComponent();
@@ -24,8 +26,8 @@ public partial class AddMenu : Window
     /// <param name="e"></param>
     private void BackButton_Click(object sender, RoutedEventArgs e)
     {
-        MainWindow mainWindow = new MainWindow();
-        mainWindow.Show();
+        // MainWindow mainWindow = new MainWindow();
+        // mainWindow.Show();
         AddMenu.GetWindow(this).Close();
     }
 
@@ -65,7 +67,7 @@ public partial class AddMenu : Window
         //MessageBox.Show("Hello world.恭喜进入选菜按钮事件");
         //  开始连接数据库
         string connStr =
-            "server=localhost;port=3306;user=root;database=test;port=3306;password=12345678;";
+            "server=localhost;port=3306;user=root;database=test;password=12345678;";
 
         MessageBox.Show("Connecting Mysql......", "提示");
 
@@ -87,25 +89,65 @@ public partial class AddMenu : Window
                 MessageBox.Show("输入不能为空.");
                 return;
             }
-            //  判断是否已经有这道菜
+
+            // 判断当前用户是否已经添加了该菜品
+            string checkUserMenuQuery =
+                "SELECT COUNT(*) FROM test.usermenu WHERE UserID = @UserID AND MenuID IN (SELECT id FROM test.菜单表 WHERE 菜名 = @MenuName)";
+            MySqlCommand checkUserMenuCmd = new MySqlCommand(checkUserMenuQuery, conn);
+            checkUserMenuCmd.Parameters.AddWithValue("@UserID", UserId);
+            checkUserMenuCmd.Parameters.AddWithValue("@MenuName", menuName);
+            int userCount = Convert.ToInt32(checkUserMenuCmd.ExecuteScalar());
+            if (userCount > 0)
+            {
+                MessageBox.Show("您已经添加了该菜品，请勿重复添加。", "提示");
+                return;
+            }
+
+            // 判断是否已经有这道菜
             string checkQuery = "SELECT COUNT(*) FROM test.菜单表 WHERE 菜名 = @MenuName";
             MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn);
             checkCmd.Parameters.AddWithValue("@MenuName", menuName);
             int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+
             if (count > 0)
             {
-                MessageBox.Show("菜名已存在，请输入不同的菜名。","提示");
-                return;
+                // 菜单表中已经存在该菜品，直接关联菜名和账户ID
+                string getMenuIdQuery = "SELECT id FROM test.菜单表 WHERE 菜名 = @MenuName";
+                MySqlCommand getMenuIdCmd = new MySqlCommand(getMenuIdQuery, conn);
+                getMenuIdCmd.Parameters.AddWithValue("@MenuName", menuName);
+                int menuId = Convert.ToInt32(getMenuIdCmd.ExecuteScalar());
+
+                string insertUserMenuQuery = "INSERT INTO test.usermenu (UserID, MenuID) VALUES (@UserID, @MenuID)";
+                MySqlCommand insertUserMenuCmd = new MySqlCommand(insertUserMenuQuery, conn);
+                insertUserMenuCmd.Parameters.AddWithValue("@UserID", UserId); // 使用当前用户的ID
+                insertUserMenuCmd.Parameters.AddWithValue("@MenuID", menuId); // 使用菜品的ID
+                insertUserMenuCmd.ExecuteNonQuery();
+
+                MessageBox.Show("成功关联菜名。", "提示");
             }
-            // 开始插入
-            string insertQuery = "INSERT INTO test.菜单表 (菜名, 口味) VALUES (@MenuName, @Flavor); SELECT LAST_INSERT_ID();";
-            MySqlCommand writing = new MySqlCommand(insertQuery, conn);
-            writing.Parameters.AddWithValue("@MenuName", menuName);
-            writing.Parameters.AddWithValue("@Flavor", flavor);
-            int newID = Convert.ToInt32(writing.ExecuteScalar());
-            MessageBox.Show($"成功导入菜品:\n- 编号:{newID}\n- 菜名:{menuName}\n- 口味:{flavor}。", "写入操作");
-            
-            //  清空输入框
+            else
+            {
+                // 菜单表中不存在该菜品，先添加到菜单表，再关联菜名和账户ID
+                string insertMenuQuery = "INSERT INTO test.菜单表 (菜名, 口味) VALUES (@MenuName, @Flavor)";
+                MySqlCommand insertMenuCmd = new MySqlCommand(insertMenuQuery, conn);
+                insertMenuCmd.Parameters.AddWithValue("@MenuName", menuName);
+                insertMenuCmd.Parameters.AddWithValue("@Flavor", flavor);
+                insertMenuCmd.ExecuteNonQuery();
+
+                // 获取新插入菜品的ID
+                string getMenuIdQuery = "SELECT LAST_INSERT_ID()";
+                MySqlCommand getMenuIdCmd = new MySqlCommand(getMenuIdQuery, conn);
+                int menuId = Convert.ToInt32(getMenuIdCmd.ExecuteScalar());
+
+                string insertUserMenuQuery = "INSERT INTO test.usermenu (UserID, MenuID) VALUES (@UserID, @MenuID)";
+                MySqlCommand insertUserMenuCmd = new MySqlCommand(insertUserMenuQuery, conn);
+                insertUserMenuCmd.Parameters.AddWithValue("@UserID", UserId); // 使用当前用户的ID
+                insertUserMenuCmd.Parameters.AddWithValue("@MenuID", menuId); // 使用新插入的菜品的ID
+                insertUserMenuCmd.ExecuteNonQuery();
+
+                MessageBox.Show("成功添加菜品。", "提示");
+            }
+            // 清空输入框
             MyTextBox1.Text = "";
             MyTextBox2.Text = "";
         }
@@ -116,6 +158,4 @@ public partial class AddMenu : Window
             throw;
         }
     }
-    
-    
 }

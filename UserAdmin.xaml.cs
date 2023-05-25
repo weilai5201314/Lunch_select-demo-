@@ -42,9 +42,11 @@ public partial class UserAdmin : Window
 
     /// 
     /// 跳转到主页面函数
+    /// <param name="window"></param>
     private void Jump_Mainwindos()
     {
         MainWindow mainWindow = new MainWindow();
+        mainWindow.UserId = Account.Text;
         mainWindow.Show();
         UserAdmin.GetWindow(this).Close();
     }
@@ -54,7 +56,7 @@ public partial class UserAdmin : Window
     /// </summary>
     private void CheckUserAccount()
     {
-        string connStr = "server=localhost;port=3306;user=root;database=test;port=3306;password=12345678;";
+        string connStr = "server=localhost;port=3306;user=root;database=test;password=12345678;";
         MySqlConnection conn = new MySqlConnection(connStr);
         // MessageBox.Show("Connecting Mysql......", "提示");
         try
@@ -83,6 +85,9 @@ public partial class UserAdmin : Window
             {
                 // 存在匹配的记录，登录成功
                 MessageBox.Show("登录成功！", "提示");
+                // MainWindow mainWindow = new MainWindow();
+                // // mainWindow.UserAdminInstance = this;
+                // mainWindow.userid = account;
                 //  开始跳转主页面
                 Jump_Mainwindos();
             }
@@ -126,9 +131,13 @@ public partial class UserAdmin : Window
         signup.Closed += (sender, e) => { this.IsEnabled = true; };
         signup.Show();
         //UserAdmin.GetWindow(this).Close();
-
     }
 
+    /// <summary>
+    /// 前往找回密码页面
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Jump_FindPass(object sender, RoutedEventArgs e)
     {
         FindPassWord findpass = new FindPassWord();

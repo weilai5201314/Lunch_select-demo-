@@ -6,6 +6,8 @@ namespace Lunch_Select;
 
 public partial class AlterPassWord : Window
 {
+    public FindPassWord FindPassWordInstance { get; set; }
+    
     public AlterPassWord()
     {
         InitializeComponent();
@@ -39,7 +41,7 @@ public partial class AlterPassWord : Window
     }
 
 
-    public FindPassWord FindPassWordInstance { get; set; }
+    
 
     /// <summary>
     /// 修改密码

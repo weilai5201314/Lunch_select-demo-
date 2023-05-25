@@ -28,6 +28,7 @@ namespace Lunch_Select
         /// 定义的各种类的列表
         /// 一般定义了要去MainWindow里面添加
         public List<string> FlavorOptions { get; set; } // 下拉框的数据源
+        public string UserId;         // 存储登录ID
 
         public MainWindow()
         {
@@ -50,6 +51,7 @@ namespace Lunch_Select
         {
             this.IsEnabled = false;
             AddMenu testmenu = new AddMenu();
+            testmenu.UserId = UserId;
             testmenu.Show();
             testmenu.Closed += (sender, e) => { this.IsEnabled = true; };
             //MainWindow.GetWindow(this).Close();
@@ -169,7 +171,6 @@ namespace Lunch_Select
         private void ButtonMain_Click(object sender, RoutedEventArgs e)
         {
             Main_menu.Text = "";    //  清空展示框
-
             string connStr = "server=localhost;port=3306;user=root;database=test;password=12345678;";
             MySqlConnection conn = new MySqlConnection(connStr);
 
@@ -184,16 +185,16 @@ namespace Lunch_Select
                     if (FlavorComboBox.SelectedItem != "全部")    //  判断是全部还是特定口味
                     {
                         string selectedFlavor = FlavorComboBox.SelectedItem.ToString();
-                        query = $"SELECT 菜名 FROM test.菜单表 WHERE 口味 = '{selectedFlavor}'";
+                        query = $"SELECT 菜名 FROM test.菜单表 WHERE 口味 = '{selectedFlavor}'AND id IN (SELECT MenuID FROM usermenu WHERE UserID = '{UserId}')";
                     }
                     else
                     {
-                        query = "SELECT 菜名 FROM test.菜单表";
+                        query = $"SELECT 菜名 FROM test.菜单表 where  id IN (SELECT MenuID FROM usermenu WHERE UserID = '{UserId}')";
                     }
                 }
                 else
                 {
-                    query = "SELECT 菜名 FROM test.菜单表";
+                    query = $"SELECT 菜名 FROM test.菜单表 where  id IN (SELECT MenuID FROM usermenu WHERE UserID = '{UserId}')";
                 }
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
