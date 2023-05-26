@@ -45,7 +45,7 @@ public partial class UserAdmin : Window
     /// <param name="window"></param>
     private void Jump_Mainwindos()
     {
-        MainWindow mainWindow = new MainWindow();
+        MainWindow mainWindow = new MainWindow(Account.Text);
         mainWindow.UserId = Account.Text;
         mainWindow.Show();
         UserAdmin.GetWindow(this).Close();

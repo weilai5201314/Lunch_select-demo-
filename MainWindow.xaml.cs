@@ -30,7 +30,7 @@ namespace Lunch_Select
         public List<string> FlavorOptions { get; set; } // 下拉框的数据源
         public string UserId;         // 存储登录ID
 
-        public MainWindow()
+        public MainWindow( string userId)
         {
             InitializeComponent();
            
@@ -38,7 +38,8 @@ namespace Lunch_Select
             FlavorOptions = new List<string>(); // 初始化下拉框数据源
             FlavorComboBox.ItemsSource = FlavorOptions; // 将数据源绑定到ComboBox
             FlavorOptions.Add("全部");
-            InitializeComboBox();// 进入读取数据函数
+            
+            InitializeComboBox(userId);// 进入读取数据函数，读取后续口味
             
         }
 
@@ -49,18 +50,18 @@ namespace Lunch_Select
         /// <param name="e"></param>
         private void ButtonAddMenu_Click(object sender, RoutedEventArgs e)
         {
-            this.IsEnabled = false;
+            // this.IsEnabled = false;
             AddMenu testmenu = new AddMenu();
             testmenu.UserId = UserId;
             testmenu.Show();
-            testmenu.Closed += (sender, e) => { this.IsEnabled = true; };
-            //MainWindow.GetWindow(this).Close();
+            // testmenu.Closed += (sender, e) => { this.IsEnabled = true; };
+            MainWindow.GetWindow(this).Close();
         }
 
         /// <summary>
         /// 初始化下拉框
         /// 读取数据库的相关操作
-        private void InitializeComboBox()
+        private void InitializeComboBox(string userid)
         {
             string connStr = "server=localhost;port=3306;user=root;database=test;password=12345678;";
             using (MySqlConnection conn = new MySqlConnection(connStr))
@@ -70,8 +71,10 @@ namespace Lunch_Select
                     // MessageBox.Show("Connecting Mysql......", "提示");
                     conn.Open();
                     // 查询口味选项
-                    string query = "SELECT DISTINCT 口味 FROM test.菜单表";
+                    // string query = "SELECT DISTINCT 口味 FROM test.菜单表 ";
+                    string query = "SELECT DISTINCT 菜单表.口味 FROM 菜单表  INNER JOIN usermenu ON 菜单表.id = usermenu.MenuID INNER JOIN users ON usermenu.UserID = users.UserName WHERE users.UserName = @UserID";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@UserID", userid);
                     MySqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
@@ -122,54 +125,9 @@ namespace Lunch_Select
         /// <param name="e"></param>
         //  设置点击选菜按钮之后的跳转函数
         //  包括了数据库的操作
-        // private void ButtonMain_Click(object sender, RoutedEventArgs e)
-        //  {
-        //      //  MessageBox.Show("Hello world.恭喜进入选菜按钮事件");
-        //      //  进来先清空聊天框
-        //      Main_menu.Text = "";
-        //      //Main_flavor.Text = "";
-        //
-        //      //  开始连接数据库
-        //      string connStr = "server=localhost;port=3306;user=root;database=test;password=12345678;";
-        //      
-        //      //MessageBox.Show("Connecting Mysql......", "提示");
-        //      
-        //      MySqlConnection conn = new MySqlConnection(connStr);
-        //      try
-        //      {
-        //          conn.Open();
-        //          MessageBox.Show("Success connecting Mysql.","提示");
-        //
-        //          //  先获取随机数范围
-        //          string getLastIdQuery = "SELECT MAX(编号) FROM test.菜单表";
-        //          MySqlCommand getLastIdCmd = new MySqlCommand(getLastIdQuery, conn);
-        //          int lastId = Convert.ToInt32(getLastIdCmd.ExecuteScalar());
-        //          //  生成随机数
-        //          Random random = new Random();
-        //          int randomId = random.Next(1, lastId + 1);
-        //          //  进入数据库开始查询
-        //          string query = $"SELECT 菜名, 口味 FROM test.菜单表 WHERE 编号 = {randomId}";
-        //          MySqlCommand cmd = new MySqlCommand(query, conn);
-        //          MySqlDataReader reader = cmd.ExecuteReader();
-        //          //  开始赋值
-        //          if (reader.Read())
-        //          {
-        //              Main_menu.Text += reader.GetString(0) + Environment.NewLine;
-        //              //Main_flavor.Text += reader.GetString(1) + Environment.NewLine;
-        //              reader.Close();
-        //          }
-        //      }
-        //      catch (Exception ex)
-        //      {
-        //          // Console.WriteLine(exception);
-        //          MessageBox.Show(ex.Message, "错误");
-        //      }
-        //      
-        //      
-        //  }
-        //  
         private void ButtonMain_Click(object sender, RoutedEventArgs e)
         {
+            
             Main_menu.Text = "";    //  清空展示框
             string connStr = "server=localhost;port=3306;user=root;database=test;password=12345678;";
             MySqlConnection conn = new MySqlConnection(connStr);

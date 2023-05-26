@@ -26,8 +26,9 @@ public partial class AddMenu : Window
     /// <param name="e"></param>
     private void BackButton_Click(object sender, RoutedEventArgs e)
     {
-        // MainWindow mainWindow = new MainWindow();
-        // mainWindow.Show();
+        MainWindow mainWindow = new MainWindow(UserId);
+        mainWindow.UserId = UserId;
+        mainWindow.Show();
         AddMenu.GetWindow(this).Close();
     }
 
@@ -70,8 +71,7 @@ public partial class AddMenu : Window
             "server=localhost;port=3306;user=root;database=test;password=12345678;";
 
         MessageBox.Show("Connecting Mysql......", "提示");
-
-
+        
         MySqlConnection conn = new MySqlConnection(connStr);
         try
         {
