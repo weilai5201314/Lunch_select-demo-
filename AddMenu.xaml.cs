@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// 加菜页面
+using System;
 using System.Windows;
 using System.Windows.Controls;
 // using System.Windows.Controls.Primitives;
@@ -12,6 +13,9 @@ namespace Lunch_Select;
 
 public partial class AddMenu : Window
 {
+    /// <summary>
+    /// 声明列表
+    /// </summary>
     public string UserId; //全局用户ID
 
     public AddMenu()
@@ -22,8 +26,6 @@ public partial class AddMenu : Window
     /// <summary>
     /// 返回主菜单按钮
     /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
     private void BackButton_Click(object sender, RoutedEventArgs e)
     {
         MainWindow mainWindow = new MainWindow(UserId);

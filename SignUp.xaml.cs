@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// 注册页面
+using System;
 using System.Windows;
 using System.Windows.Documents.Serialization;
 //引用数据库
@@ -90,4 +91,7 @@ public partial class SignUp : Window
             throw;
         }
     }
+    
+    
+    ///
 }

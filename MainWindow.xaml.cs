@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// 主页面
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,10 +39,41 @@ namespace Lunch_Select
             FlavorOptions = new List<string>(); // 初始化下拉框数据源
             FlavorComboBox.ItemsSource = FlavorOptions; // 将数据源绑定到ComboBox
             FlavorOptions.Add("全部");
-            
-            InitializeComboBox(userId);// 进入读取数据函数，读取后续口味
+            InitializeComboBox(userId);// 初始化下拉框函数
             
         }
+        
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        // 设置了全屏的组件适配
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // InitializeComboBox();
+            // 获取窗口的宽度和高度
+            
+            // 获取窗口的宽度和高度
+            double width = mainwindow.ActualWidth;
+            double height = mainwindow.ActualHeight;
+
+            // 设置按钮的宽度和高度为窗口的1/3
+            Button btn = mainwindow.Children[0] as Button;
+            if (btn != null)
+            {
+                btn.Width = width / 3;
+                btn.Height = height / 3;
+
+                // 设置按钮的位置为窗口中心
+                Canvas.SetLeft(btn, (width - btn.Width) / 2);
+                Canvas.SetTop(btn, (height - btn.Height) / 2);
+            }
+            else
+            {
+                // 处理Children[0]为空的情况
+            }
+            
+            
+        }
+
 
         /// <summary>
         /// 跳转到加菜菜单
@@ -76,6 +108,7 @@ namespace Lunch_Select
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@UserID", userid);
                     MySqlDataReader reader = cmd.ExecuteReader();
+                    /// 循环添加口味
                     while (reader.Read())
                     {
                         string flavor = reader.GetString(0);
@@ -90,40 +123,10 @@ namespace Lunch_Select
             }
         }
         
+        
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        // 设置了全屏的组件适配
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            // InitializeComboBox();
-            // 获取窗口的宽度和高度
-            
-            // 获取窗口的宽度和高度
-            double width = mainwindow.ActualWidth;
-            double height = mainwindow.ActualHeight;
-
-            // 设置按钮的宽度和高度为窗口的1/3
-            Button btn = mainwindow.Children[0] as Button;
-            if (btn != null)
-            {
-                btn.Width = width / 3;
-                btn.Height = height / 3;
-
-                // 设置按钮的位置为窗口中心
-                Canvas.SetLeft(btn, (width - btn.Width) / 2);
-                Canvas.SetTop(btn, (height - btn.Height) / 2);
-            }
-            else
-            {
-                // 处理Children[0]为空的情况
-            }
-            
-            
-        }
-
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //  设置点击选菜按钮之后的跳转函数
+        //  设置点击选菜按钮之后的函数
         //  包括了数据库的操作
         private void ButtonMain_Click(object sender, RoutedEventArgs e)
         {
@@ -154,19 +157,19 @@ namespace Lunch_Select
                 {
                     query = $"SELECT 菜名 FROM test.菜单表 where  id IN (SELECT MenuID FROM usermenu WHERE UserID = '{UserId}')";
                 }
-
+                /// 开始查询
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 List<string> menuOptions = new List<string>();
-
+                /// 判断是否读取到数据计数器，及获取菜名
                 while (reader.Read())
                 {
                     menuOptions.Add(reader.GetString(0));
                 }
 
                 reader.Close();
-
+                /// 赋值到文本框
                 if (menuOptions.Count > 0)
                 {
                     Random random = new Random();
@@ -191,5 +194,8 @@ namespace Lunch_Select
         {
             ButtonMain_Click(sender, e);
         }
+        
+        
+        ///
     }
 }

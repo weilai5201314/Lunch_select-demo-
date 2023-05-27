@@ -1,4 +1,6 @@
-﻿using System;
+﻿/// 找回密码
+/// 输入新密码页面
+using System;
 using System.Windows;
 using MySql.Data.MySqlClient;
 
@@ -6,7 +8,11 @@ namespace Lunch_Select;
 
 public partial class AlterPassWord : Window
 {
-    public FindPassWord FindPassWordInstance { get; set; }
+    /// <summary>
+    /// 声明处
+    /// </summary>
+    public FindPassWord FindPassWordInstance { get; set; } /// 存储页面信息，方便其他页面调用
+                                                            
     
     public AlterPassWord()
     {
@@ -16,7 +22,7 @@ public partial class AlterPassWord : Window
 
     /// <summary>
     /// 检查输入正确性
-    /// </summary>
+    /// 检验输入是否为空，或者是否相同
     /// <returns></returns>
     private int Check_Newpass()
     {
@@ -58,7 +64,7 @@ public partial class AlterPassWord : Window
         }
 
         // 输入通过，开始写入数据库
-        string connStr = "server=localhost;port=3306;user=root;database=test;port=3306;password=12345678;";
+        string connStr = "server=localhost;port=3306;user=root;database=test;password=12345678;";
         string account = FindPassWordInstance.Account.Text; //读取 FindPassWord 页面的 Account text值
         string newPass = FirstAlter.Text;
         string insertQuery = "UPDATE users SET Password = @NewPassword WHERE UserName = @Account";
@@ -80,8 +86,7 @@ public partial class AlterPassWord : Window
                     MessageBox.Show("密码修改成功！");
                 }
             }
-
-            //  clear textbox
+            
             FindPassWordInstance.Account.Text = "";
             FindPassWordInstance.Tip.Text = "";
 

@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿/// 找回密码
+/// 验证页面
+using System.Windows;
 using System;
 //引用数据库
 using MySql.Data.MySqlClient;
@@ -12,6 +14,28 @@ public partial class FindPassWord : Window
         InitializeComponent();
     }
 
+    /// <summary>
+    /// 返回登录页面
+    /// </summary>
+    private void Jump_UserAdmin(object sender, RoutedEventArgs e)
+    {
+        UserAdmin useradmin = new UserAdmin();
+        useradmin.Show();
+        FindPassWord.GetWindow(this).Close();
+    }
+
+    /// <summary>
+    /// 跳转修改密码页面
+    /// </summary>
+    private void Jump_AlterPass(AlterPassWord alterPassWord)
+    {
+        this.IsEnabled = false; //禁用原来的窗口
+        // 订阅新窗口的 Closed 事件，在窗口关闭时恢复原始窗口的可用状态
+        alterPassWord.Closed += (sender, e) => { this.IsEnabled = true; };
+        alterPassWord.Show();
+    }
+    
+    
     /// <summary>
     /// 用户验证
     /// 验证提示的正确性
@@ -71,24 +95,7 @@ public partial class FindPassWord : Window
         }
     }
 
-    /// <summary>
-    /// 返回登录页面
-    /// </summary>
-    private void Jump_UserAdmin(object sender, RoutedEventArgs e)
-    {
-        UserAdmin useradmin = new UserAdmin();
-        useradmin.Show();
-        FindPassWord.GetWindow(this).Close();
-    }
-
-    /// <summary>
-    /// 跳转修改密码页面
-    /// </summary>
-    private void Jump_AlterPass(AlterPassWord alterPassWord)
-    {
-        this.IsEnabled = false; //禁用原来的窗口
-        // 订阅新窗口的 Closed 事件，在窗口关闭时恢复原始窗口的可用状态
-        alterPassWord.Closed += (sender, e) => { this.IsEnabled = true; };
-        alterPassWord.Show();
-    }
+   
+    
+    ///
 }

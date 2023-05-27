@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// 登录页面
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -51,6 +52,36 @@ public partial class UserAdmin : Window
         UserAdmin.GetWindow(this).Close();
     }
 
+    /// <summary>
+    /// 前往注册页面
+    /// </summary>
+    private void Jump_SignUp(object sender, RoutedEventArgs e)
+    {
+        this.IsEnabled = false;
+        SignUp signup = new SignUp();
+        signup.Closed += (sender, e) => { this.IsEnabled = true; };
+        signup.Show();
+        //UserAdmin.GetWindow(this).Close();
+    }
+    
+    ///
+    /// 登录按钮
+    private void Jump_LogIn(object sender, RoutedEventArgs e)
+    {
+        CheckUserAccount();
+    }
+    
+    
+    /// <summary>
+    /// 前往找回密码页面
+    /// </summary>
+    private void Jump_FindPass(object sender, RoutedEventArgs e)
+    {
+        FindPassWord findpass = new FindPassWord();
+        findpass.Show();
+        UserAdmin.GetWindow(this).Close();
+    }
+    
     /// <summary>
     /// 验证用户的数据库操作
     /// </summary>
@@ -110,38 +141,5 @@ public partial class UserAdmin : Window
         }
     }
 
-    ///
-    /// 登录按钮
-    private void Jump_LogIn(object sender, RoutedEventArgs e)
-    {
-        CheckUserAccount();
-        //  开始跳转
-        //Jump_Mainwindos();
-    }
-
-    /// <summary>
-    /// 前往注册页面
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void Jump_SignUp(object sender, RoutedEventArgs e)
-    {
-        this.IsEnabled = false;
-        SignUp signup = new SignUp();
-        signup.Closed += (sender, e) => { this.IsEnabled = true; };
-        signup.Show();
-        //UserAdmin.GetWindow(this).Close();
-    }
-
-    /// <summary>
-    /// 前往找回密码页面
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void Jump_FindPass(object sender, RoutedEventArgs e)
-    {
-        FindPassWord findpass = new FindPassWord();
-        findpass.Show();
-        UserAdmin.GetWindow(this).Close();
-    }
+    
 }
