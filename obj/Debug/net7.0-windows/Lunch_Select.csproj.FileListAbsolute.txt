@@ -80,3 +80,5 @@ D:\x\obj\Debug\net7.0-windows\FindPassWord.g.cs
 D:\x\obj\Debug\net7.0-windows\FindPassWord.baml
 D:\x\obj\Debug\net7.0-windows\AlterPassWord.g.cs
 D:\x\obj\Debug\net7.0-windows\AlterPassWord.baml
+D:\x\obj\Debug\net7.0-windows\UserCenter.g.cs
+D:\x\obj\Debug\net7.0-windows\UserCenter.baml

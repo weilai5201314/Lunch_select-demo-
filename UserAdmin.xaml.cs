@@ -136,7 +136,7 @@ public partial class UserAdmin : Window
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            MessageBox.Show("无法连接数据库");
             throw;
         }
     }

@@ -74,22 +74,6 @@ namespace Lunch_Select
             
         }
 
-
-        /// <summary>
-        /// 跳转到加菜菜单
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonAddMenu_Click(object sender, RoutedEventArgs e)
-        {
-            // this.IsEnabled = false;
-            AddMenu testmenu = new AddMenu();
-            testmenu.UserId = UserId;
-            testmenu.Show();
-            // testmenu.Closed += (sender, e) => { this.IsEnabled = true; };
-            MainWindow.GetWindow(this).Close();
-        }
-
         /// <summary>
         /// 初始化下拉框
         /// 读取数据库的相关操作
@@ -122,6 +106,33 @@ namespace Lunch_Select
                 }
             }
         }
+
+        
+        /// <summary>
+        /// 跳转到加菜菜单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Jump_AddMenu(object sender, RoutedEventArgs e)
+        {
+            // this.IsEnabled = false;
+            AddMenu testmenu = new AddMenu();
+            testmenu.UserId = UserId;
+            testmenu.Show();
+            // testmenu.Closed += (sender, e) => { this.IsEnabled = true; };
+            MainWindow.GetWindow(this).Close();
+        }
+
+        ///
+        /// 跳转设置页面/用户中心
+        private void Jump_Settings(object sender, RoutedEventArgs e)
+        {
+            UserCenter usercenter = new UserCenter(UserId);
+            usercenter.UserId = UserId;
+            usercenter.Show();
+            MainWindow.GetWindow(this).Close();
+        }
+       
         
         
         /// <param name="sender"></param>
@@ -196,6 +207,6 @@ namespace Lunch_Select
         }
         
         
-        ///
+       ///
     }
 }
