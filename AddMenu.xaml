@@ -32,6 +32,28 @@
             </Setter>
         </Style>
 
+        <Style x:Key="CustomButtonStyle2" TargetType="Button">
+            <Setter Property="Background" Value="#B19FF9" />
+
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" Background="{TemplateBinding Background}" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#8B79BF" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <!-- 文本框字体央视 -->
         <!-- <Style x:Key="ComboBoxStyle" TargetType="ComboBox"> -->
         <!--     <Setter Property="Foreground" Value="#C08E71" /> -->
@@ -87,7 +109,7 @@
             <!--         Click="BackButton_Click"></Button> -->
 
             <!-- 返回主菜单按钮 -->
-            <Button Content="-" Style="{StaticResource CustomButtonStyle}" Width="30" Height="30"
+            <Button Content="返回" Style="{StaticResource CustomButtonStyle2}" Width="50" Height="30"
                     Canvas.Left="20" Canvas.Top="20" Click="BackButton_Click" />
         </Canvas>
     </Grid>

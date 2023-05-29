@@ -1,5 +1,6 @@
 ﻿/// 找回密码
 /// 验证页面
+
 using System.Windows;
 using System;
 //引用数据库
@@ -9,9 +10,14 @@ namespace Lunch_Select;
 
 public partial class FindPassWord : Window
 {
+    /// <summary>
+    /// 声明列表
+    // public string UserId; //存储用户ID
+    
     public FindPassWord()
     {
         InitializeComponent();
+        
     }
 
     /// <summary>
@@ -31,11 +37,17 @@ public partial class FindPassWord : Window
     {
         this.IsEnabled = false; //禁用原来的窗口
         // 订阅新窗口的 Closed 事件，在窗口关闭时恢复原始窗口的可用状态
-        alterPassWord.Closed += (sender, e) => { this.IsEnabled = true; };
+        alterPassWord.Closed += (sender, e) =>
+        {
+            this.IsEnabled = true;
+            //  当修改页面关闭后，才 清空输入
+            Account.Text = "";
+            Tip.Text = "";
+        };
         alterPassWord.Show();
     }
-    
-    
+
+
     /// <summary>
     /// 用户验证
     /// 验证提示的正确性
@@ -72,8 +84,8 @@ public partial class FindPassWord : Window
                 {
                     MessageBox.Show("账号或提示错误，请重新输入", "找回密码");
                     //  清空
-                    Account.Text = "";
-                    Tip.Text = "";
+                    // Account.Text = "";
+                    // Tip.Text = "";
                     return;
                 }
 
@@ -82,11 +94,8 @@ public partial class FindPassWord : Window
 
             //  开始跳转修改密码
             AlterPassWord alterPassWord = new AlterPassWord();
-            alterPassWord.FindPassWordInstance = this;
+            alterPassWord.UserId = Account.Text;
             Jump_AlterPass(alterPassWord);
-            //  修改完之后清空输入
-            // Account.Text = "";
-            // Tip.Text = "";
         }
         catch (Exception exception)
         {
@@ -95,7 +104,6 @@ public partial class FindPassWord : Window
         }
     }
 
-   
-    
+
     ///
 }

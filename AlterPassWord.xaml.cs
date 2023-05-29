@@ -11,9 +11,8 @@ public partial class AlterPassWord : Window
     /// <summary>
     /// 声明处
     /// </summary>
-    public FindPassWord FindPassWordInstance { get; set; } /// 存储页面信息，方便其他页面调用
-                                                            
-    
+    public string UserId; /// 存储用户ID
+
     public AlterPassWord()
     {
         InitializeComponent();
@@ -65,7 +64,8 @@ public partial class AlterPassWord : Window
 
         // 输入通过，开始写入数据库
         string connStr = "server=localhost;port=3306;user=root;database=test;password=12345678;";
-        string account = FindPassWordInstance.Account.Text; //读取 FindPassWord 页面的 Account text值
+        string account = UserId; //读取 FindPassWord 页面的 Account text值
+
         string newPass = FirstAlter.Text;
         string insertQuery = "UPDATE users SET Password = @NewPassword WHERE UserName = @Account";
         MySqlConnection conn = new MySqlConnection(connStr);
@@ -87,9 +87,7 @@ public partial class AlterPassWord : Window
                 }
             }
             
-            FindPassWordInstance.Account.Text = "";
-            FindPassWordInstance.Tip.Text = "";
-
+            
             AlterPassWord.GetWindow(this).Close(); //返回
         }
         catch (Exception exception)

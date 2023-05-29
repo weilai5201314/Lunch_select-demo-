@@ -32,6 +32,29 @@
             </Setter>
         </Style>
         
+        <Style x:Key="CustomButtonStyle2" TargetType="Button">
+            <Setter Property="Background" Value="#B19FF9" />
+
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="15" Background="{TemplateBinding Background}" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#8B79BF" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
         <!-- 输入文本框字体 -->
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
             <Setter Property="Foreground" Value="#BB905E" />
@@ -81,7 +104,7 @@
             <!-- 功能按钮类 -->
             <Button Content="注册" Style="{StaticResource CustomButtonStyle}" Width="120" Height="50"
                     Canvas.Left="190" Canvas.Top="270" Click="Button_AddUser"  />
-            <Button Content="返回登录" Style="{StaticResource CustomButtonStyle}" Width="120" Height="50"
+            <Button Content="返回登录" Style="{StaticResource CustomButtonStyle2}" Width="120" Height="50"
                     Canvas.Left="190" Canvas.Top="330"  Click="Jump_UserAdmin" />
 
         </Canvas>

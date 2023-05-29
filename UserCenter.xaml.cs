@@ -42,7 +42,12 @@ public partial class UserCenter : Window
     /// </summary>
     private void Jump_FindPass(object sender, RoutedEventArgs e)
     {
-        
+        this.IsEnabled = false;
+        AlterPassWord alterpass = new AlterPassWord();
+        alterpass.UserId = UserId;
+        alterpass.Closed += (sender, e) => { this.IsEnabled = true; };
+        alterpass.Show();
+
     }
     
     ///

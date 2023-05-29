@@ -11,7 +11,6 @@
         <!-- 选菜按钮 -->
         <Style x:Key="CustomButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="LightGreen" />
-
             <Setter Property="Foreground" Value="White" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="16" />
@@ -34,7 +33,6 @@
         
         <Style x:Key="CustomButtonStyle2" TargetType="Button">
             <Setter Property="Background" Value="#95E8EA" />
-
             <Setter Property="Foreground" Value="White" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="16" />
@@ -81,12 +79,14 @@
             <TextBlock Text="当前账户:" FontSize="20" Foreground="#1686F9" FontFamily="Arial"
                        HorizontalAlignment="Center"
                        Canvas.Left="40" Canvas.Top="50" />
-            <TextBlock Name="ID" Text="wm" FontSize="20" Foreground="#8B79BF" FontFamily="Arial"
-                       HorizontalAlignment="Center"
-                       Canvas.Left="135" Canvas.Top="50" />
             <TextBlock Text="功能选项:" FontSize="20" Foreground="#1686F9" FontFamily="Arial"
                        HorizontalAlignment="Center"
                        Canvas.Left="40" Canvas.Top="150" />
+            
+            <!-- 可更改文本框 -->
+            <TextBlock Name="ID" Text="wm" FontSize="20" Foreground="#8B79BF" FontFamily="Arial"
+                       HorizontalAlignment="Center"
+                       Canvas.Left="135" Canvas.Top="50" />
             <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <!-- 输入框类 -->
             
