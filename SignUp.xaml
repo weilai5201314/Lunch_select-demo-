@@ -31,7 +31,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <Style x:Key="CustomButtonStyle2" TargetType="Button">
             <Setter Property="Background" Value="#B19FF9" />
 
@@ -42,7 +42,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="15" Background="{TemplateBinding Background}" BorderThickness="0">
+                        <Border CornerRadius="10" Background="{TemplateBinding Background}" BorderThickness="0">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
@@ -54,7 +54,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <!-- 输入文本框字体 -->
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
             <Setter Property="Foreground" Value="#BB905E" />
@@ -82,30 +82,36 @@
 
             <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <!-- 输入框类 -->
-            <Label Content="账号：" Style="{StaticResource InputLabelStyle}" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" 
-                   Canvas.Left="120" Canvas.Top="130"/>
+            <Label Content="账号：" Style="{StaticResource InputLabelStyle}"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                   Canvas.Left="120" Canvas.Top="130" />
             <TextBox Name="Account" Width="150" Height="40" Canvas.Left="190" Canvas.Top="120"
                      Style="{StaticResource TextBoxStyle}" />
-            
-            <Label Content="密码：" Style="{StaticResource InputLabelStyle}" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" 
-                   Canvas.Left="120" Canvas.Top="180"/>
+
+            <Label Content="密码：" Style="{StaticResource InputLabelStyle}"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                   Canvas.Left="120" Canvas.Top="180" />
             <TextBox Name="Password" Width="150" Height="40" Canvas.Left="190" Canvas.Top="170"
                      Style="{StaticResource TextBoxStyle}" />
-            
-            <Label Content="提示：" Style="{StaticResource InputLabelStyle}" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" 
-                   Canvas.Left="120" Canvas.Top="230"/>
-            <TextBox Name="Tip" Width="150" Height="40" Canvas.Left="190" Canvas.Top="220"
+
+            <Label Content="密码2：" Style="{StaticResource InputLabelStyle}"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                   Canvas.Left="111" Canvas.Top="230" />
+            <TextBox Name="Password2" Width="150" Height="40" Canvas.Left="190" Canvas.Top="220"
+                     Style="{StaticResource TextBoxStyle}" />
+
+            <Label Content="提示：" Style="{StaticResource InputLabelStyle}"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                   Canvas.Left="120" Canvas.Top="280" />
+            <TextBox Name="Tip" Width="150" Height="40" Canvas.Left="190" Canvas.Top="270"
                      Style="{StaticResource TextBoxStyle}" />
 
             <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <!-- 功能按钮类 -->
             <Button Content="注册" Style="{StaticResource CustomButtonStyle}" Width="120" Height="50"
-                    Canvas.Left="190" Canvas.Top="270" Click="Button_AddUser"  />
-            <Button Content="返回登录" Style="{StaticResource CustomButtonStyle2}" Width="120" Height="50"
-                    Canvas.Left="190" Canvas.Top="330"  Click="Jump_UserAdmin" />
+                    Canvas.Left="190" Canvas.Top="320" Click="Button_AddUser" />
+            <Button Content="返回" Style="{StaticResource CustomButtonStyle2}" Width="50" Height="30"
+                    Canvas.Left="20" Canvas.Top="30" Click="Jump_UserAdmin" />
 
         </Canvas>
     </Grid>

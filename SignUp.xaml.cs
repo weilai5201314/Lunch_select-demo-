@@ -1,4 +1,5 @@
 ﻿/// 注册页面
+
 using System;
 using System.Windows;
 using System.Windows.Documents.Serialization;
@@ -22,8 +23,8 @@ public partial class SignUp : Window
     /// <param name="e"></param>
     private void Jump_UserAdmin(object sender, RoutedEventArgs e)
     {
-        UserAdmin useradmin = new UserAdmin();
-        useradmin.Show();
+        // UserAdmin useradmin = new UserAdmin();
+        // useradmin.Show();
         SignUp.GetWindow(this).Close();
     }
 
@@ -47,13 +48,22 @@ public partial class SignUp : Window
             //  开始数据库操作
             string username = Account.Text;
             string password = Password.Text;
+            string password2 = Password2.Text;
             string tip = Tip.Text;
             string checkQuery = $"SELECT * FROM users WHERE UserName = '{username}'";
 
             // 判断是否为空
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(tip))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(password2) ||
+                string.IsNullOrEmpty(tip))
             {
                 MessageBox.Show("请全部填写。");
+                return;
+            }
+
+            //  判断两次密码是否相同
+            if (password != password2)
+            {
+                MessageBox.Show("两次密码不相同.");
                 return;
             }
 
@@ -83,6 +93,7 @@ public partial class SignUp : Window
             //   清空聊天框
             Account.Text = "";
             Password.Text = "";
+            Password2.Text = "";
             Tip.Text = "";
         }
         catch (Exception exception)
@@ -91,7 +102,7 @@ public partial class SignUp : Window
             throw;
         }
     }
-    
-    
+
+
     ///
 }

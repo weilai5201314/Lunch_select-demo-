@@ -189,7 +189,7 @@ namespace Lunch_Select
                 }
                 else
                 {
-                    Main_menu.Text = "没有这道菜。";
+                    Main_menu.Text = "还没有添加菜品。";
                 }
             }
             catch (Exception ex)
