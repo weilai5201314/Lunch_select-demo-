@@ -5,6 +5,10 @@ using System.Windows.Controls;
 
 //引用数据库
 using MySql.Data.MySqlClient;
+// 引入avalonia
+using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Markup.Xaml;
 
 namespace Lunch_Select;
 

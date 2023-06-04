@@ -45,6 +45,10 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "dependencies": {
+            "Avalonia": {
+              "target": "Package",
+              "version": "[11.0.0-preview8, )"
+            },
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.33, )"

@@ -82,3 +82,15 @@ D:\x\obj\Debug\net7.0-windows\AlterPassWord.g.cs
 D:\x\obj\Debug\net7.0-windows\AlterPassWord.baml
 D:\x\obj\Debug\net7.0-windows\UserCenter.g.cs
 D:\x\obj\Debug\net7.0-windows\UserCenter.baml
+D:\x\bin\Debug\net7.0-windows\Avalonia.Base.dll
+D:\x\bin\Debug\net7.0-windows\Avalonia.Controls.dll
+D:\x\bin\Debug\net7.0-windows\Avalonia.DesignerSupport.dll
+D:\x\bin\Debug\net7.0-windows\Avalonia.Dialogs.dll
+D:\x\bin\Debug\net7.0-windows\Avalonia.Markup.Xaml.dll
+D:\x\bin\Debug\net7.0-windows\Avalonia.Markup.dll
+D:\x\bin\Debug\net7.0-windows\Avalonia.MicroCom.dll
+D:\x\bin\Debug\net7.0-windows\Avalonia.OpenGL.dll
+D:\x\bin\Debug\net7.0-windows\Avalonia.dll
+D:\x\bin\Debug\net7.0-windows\Avalonia.Remote.Protocol.dll
+D:\x\bin\Debug\net7.0-windows\MicroCom.Runtime.dll
+D:\x\obj\Debug\net7.0-windows\Avalonia\Resources.Inputs.cache

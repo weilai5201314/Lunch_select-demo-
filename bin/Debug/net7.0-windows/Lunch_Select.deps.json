@@ -8,12 +8,68 @@
     ".NETCoreApp,Version=v7.0": {
       "Lunch_Select/1.0.0": {
         "dependencies": {
+          "Avalonia": "11.0.0-preview8",
           "MySql.Data": "8.0.33",
           "Newtonsoft.Json": "13.0.3",
           "mysql-connector-net": "1.0.0"
         },
         "runtime": {
           "Lunch_Select.dll": {}
+        }
+      },
+      "Avalonia/11.0.0-preview8": {
+        "dependencies": {
+          "Avalonia.BuildServices": "0.0.12",
+          "Avalonia.Remote.Protocol": "11.0.0-preview8",
+          "MicroCom.Runtime": "0.11.0",
+          "System.ComponentModel.Annotations": "4.5.0"
+        },
+        "runtime": {
+          "lib/net6.0/Avalonia.Base.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.0.0"
+          },
+          "lib/net6.0/Avalonia.Controls.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.0.0"
+          },
+          "lib/net6.0/Avalonia.DesignerSupport.dll": {
+            "assemblyVersion": "0.7.0.0",
+            "fileVersion": "0.7.0.0"
+          },
+          "lib/net6.0/Avalonia.Dialogs.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.0.0"
+          },
+          "lib/net6.0/Avalonia.Markup.Xaml.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.0.0"
+          },
+          "lib/net6.0/Avalonia.Markup.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.0.0"
+          },
+          "lib/net6.0/Avalonia.MicroCom.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.0.0"
+          },
+          "lib/net6.0/Avalonia.OpenGL.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.0.0"
+          },
+          "lib/net6.0/Avalonia.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.0.0"
+          }
+        }
+      },
+      "Avalonia.BuildServices/0.0.12": {},
+      "Avalonia.Remote.Protocol/11.0.0-preview8": {
+        "runtime": {
+          "lib/net6.0/Avalonia.Remote.Protocol.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.0.0"
+          }
         }
       },
       "Google.Protobuf/3.21.9": {
@@ -50,6 +106,14 @@
           "lib/net6.0/K4os.Hash.xxHash.dll": {
             "assemblyVersion": "1.0.8.0",
             "fileVersion": "1.0.8.0"
+          }
+        }
+      },
+      "MicroCom.Runtime/0.11.0": {
+        "runtime": {
+          "lib/net5.0/MicroCom.Runtime.dll": {
+            "assemblyVersion": "0.11.0.0",
+            "fileVersion": "0.11.0.0"
           }
         }
       },
@@ -126,6 +190,7 @@
         }
       },
       "System.Buffers/4.5.1": {},
+      "System.ComponentModel.Annotations/4.5.0": {},
       "System.Configuration.ConfigurationManager/4.4.1": {
         "dependencies": {
           "System.Security.Cryptography.ProtectedData": "4.4.0"
@@ -237,6 +302,27 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Avalonia/11.0.0-preview8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-f+im85VKZ9VjKaQlvw+73UQPT7vJBape7h3B1ozDdywkc6OkU+fp577ROXc4zZprvXK876vmhU/e3NaKVLERvw==",
+      "path": "avalonia/11.0.0-preview8",
+      "hashPath": "avalonia.11.0.0-preview8.nupkg.sha512"
+    },
+    "Avalonia.BuildServices/0.0.12": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UnNTQc4UUGZkF/2gEPCujel8bK+8WCXttBacS80c9UvMrFkpb210n65ex6Qjnnzdj4WWn3XFGcMdsiX17OA6Bw==",
+      "path": "avalonia.buildservices/0.0.12",
+      "hashPath": "avalonia.buildservices.0.0.12.nupkg.sha512"
+    },
+    "Avalonia.Remote.Protocol/11.0.0-preview8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Sy9XRwr2Hm200bw7hOzlEfsrFxRweX8EYJAsTMnaN/VBO0d178Srq+Ya7ePRNDwDn04w5R8r8gJt73A1c77TvQ==",
+      "path": "avalonia.remote.protocol/11.0.0-preview8",
+      "hashPath": "avalonia.remote.protocol.11.0.0-preview8.nupkg.sha512"
+    },
     "Google.Protobuf/3.21.9": {
       "type": "package",
       "serviceable": true,
@@ -264,6 +350,13 @@
       "sha512": "sha512-Wp2F7BamQ2Q/7Hk834nV9vRQapgcr8kgv9Jvfm8J3D0IhDqZMMl+a2yxUq5ltJitvXvQfB8W6K4F4fCbw/P6YQ==",
       "path": "k4os.hash.xxhash/1.0.8",
       "hashPath": "k4os.hash.xxhash.1.0.8.nupkg.sha512"
+    },
+    "MicroCom.Runtime/0.11.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MEnrZ3UIiH40hjzMDsxrTyi8dtqB5ziv3iBeeU4bXsL/7NLSal9F1lZKpK+tfBRnUoDSdtcW3KufE4yhATOMCA==",
+      "path": "microcom.runtime/0.11.0",
+      "hashPath": "microcom.runtime.0.11.0.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/3.1.0": {
       "type": "package",
@@ -320,6 +413,13 @@
       "sha512": "sha512-Rw7ijyl1qqRS0YQD/WycNst8hUUMgrMH4FCn1nNm27M4VxchZ1js3fVjQaANHO5f3sN4isvP4a+Met9Y4YomAg==",
       "path": "system.buffers/4.5.1",
       "hashPath": "system.buffers.4.5.1.nupkg.sha512"
+    },
+    "System.ComponentModel.Annotations/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UxYQ3FGUOtzJ7LfSdnYSFd7+oEv6M8NgUatatIN2HxNtDdlcvFAf+VIq4Of9cDMJEJC0aSRv/x898RYhB4Yppg==",
+      "path": "system.componentmodel.annotations/4.5.0",
+      "hashPath": "system.componentmodel.annotations.4.5.0.nupkg.sha512"
     },
     "System.Configuration.ConfigurationManager/4.4.1": {
       "type": "package",

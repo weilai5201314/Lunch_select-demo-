@@ -13,4 +13,12 @@
     <SourceRoot Include="C:\Users\w2001\.nuget\packages\" />
     <SourceRoot Include="D:\Dependence\visual_studio\Shared\NuGetPackages\" />
   </ItemGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)avalonia.buildservices\0.0.12\buildTransitive\Avalonia.BuildServices.props" Condition="Exists('$(NuGetPackageRoot)avalonia.buildservices\0.0.12\buildTransitive\Avalonia.BuildServices.props')" />
+    <Import Project="$(NuGetPackageRoot)avalonia\11.0.0-preview8\buildTransitive\Avalonia.props" Condition="Exists('$(NuGetPackageRoot)avalonia\11.0.0-preview8\buildTransitive\Avalonia.props')" />
+  </ImportGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgAvalonia_BuildServices Condition=" '$(PkgAvalonia_BuildServices)' == '' ">C:\Users\w2001\.nuget\packages\avalonia.buildservices\0.0.12</PkgAvalonia_BuildServices>
+    <PkgAvalonia Condition=" '$(PkgAvalonia)' == '' ">C:\Users\w2001\.nuget\packages\avalonia\11.0.0-preview8</PkgAvalonia>
+  </PropertyGroup>
 </Project>
