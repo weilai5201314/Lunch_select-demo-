@@ -31,10 +31,28 @@
 - Newtonsoft.Json 13.0.3
 - mysql-connector-net 1.0.0
 - avalonia 11.0.0-preview8
-  
+
+
+## 环境配置
+
+### 1.安装全部外部依赖
+
+安装viausl studio，并安装c#所有依赖。
+
+先安装外部依赖，然后开始初始化数据库，需要的库及表如下：
+
+- 库名:test
+- 表名:
+  - users : ID 自增序列 + UserName varchar（20） + Password varchar（20） + tip varchar（20）
+  - 菜单表 : id 自增序列 + 菜名 varchar（20）+ 口味 varchar(10)
+  - usermenu : UserID 引用users的UserName列 + MenuID 引用菜单表的id列
+
+### 2.在ide内安装内部依赖
+
+
 ## 其他事项
 
-因学期时间有限，已到学期末，所以还有很多改动没有完成。
+因学期时间有限，已到学期末，所以还有很多改动没来得及实现。
 
 - 下载的avalonia准备用于大改UI。
 - 数据库增加触发器，省去sql代码语句。
