@@ -25,6 +25,7 @@
 - .net 7 sdk
 - Mysql net connector/net 8.0.32
 - Mysql server 8.0.32
+- visual studio 里面的所有C#依赖~~不确定有没有用，还是下吧~~
 
 **idea内部下载**
 
